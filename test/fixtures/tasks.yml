@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  done: false
+  deadline: 2015-04-01
+  name: MyString
+  roadmap_id: 1
+
+two:
+  description: MyText
+  done: false
+  deadline: 2015-04-01
+  name: MyString
+  roadmap_id: 1

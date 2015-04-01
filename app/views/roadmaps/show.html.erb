@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @roadmap.user_id %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @roadmap.rating %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @roadmap.country %>
+</p>
+
+<%= link_to 'Edit', edit_roadmap_path(@roadmap) %> |
+<%= link_to 'Back', roadmaps_path %>
