@@ -3,14 +3,15 @@ Rails.application.configure do
 
 # Code is not reloaded between requests.
   config.cache_classes = true
-  config.action_mailer.default_url_options = { :host => 'getgoabroad.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
     :address        => "smtp.sendgrid.net",
-    :port           => "25",
     :authentication => :plain,
+    :port      => 587, # ports 587 and 2525 are also supported with STARTTLS
+    :enable_starttls_auto => true, # detects and uses STARTTLS
     :user_name      => ENV['SENDGRID_USERNAME'],
     :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => ENV['SENDGRID_DOMAIN']
+    :domain         => 'heroku.com'
   }
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
