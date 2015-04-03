@@ -5,19 +5,36 @@
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="The single source of all the neccessary information to settle down abroad for international student.">
+		<meta name="author" content="teamgetgo">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://www.getgoabroad.com/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.getgoabroad.com/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.getgoabroad.com/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.getgoabroad.com/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="60x60" href="http://www.getgoabroad.com/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.getgoabroad.com/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.getgoabroad.com/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.getgoabroad.com/apple-touch-icon-152x152.png" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-196x196.png" sizes="196x196" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-16x16.png" sizes="16x16" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-128.png" sizes="128x128" />
+		<meta name="application-name" content="Getgo"/>
+		<meta name="msapplication-TileColor" content="#FFFFFF" />
+		<meta name="msapplication-TileImage" content="http://www.getgoabroad.com/mstile-144x144.png" />
+		<meta name="msapplication-square70x70logo" content="http://www.getgoabroad.com/mstile-70x70.png" />
+		<meta name="msapplication-square150x150logo" content="http://www.getgoabroad.com/mstile-150x150.png" />
+		<meta name="msapplication-wide310x150logo" content="http://www.getgoabroad.com/mstile-310x150.png" />
+		<meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
+
+		<title>Sign in</title>
+
 	</head>
-	<body>
+	<body data-spy="scroll" data-target="#sidenav" data-offset="100">
 
-		<% if user_signed_in? %>
-		Logged in as <strong><%= current_user.email %></strong>.
-		<%= image_tag current_user.gravatar_url %>
-
-		<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-		<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-		<% else %>
-		<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-		<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-		<% end %>
 		<% if notice %>
 		<p class="alert alert-success">
 			<%= notice %>
@@ -28,7 +45,81 @@
 			<%= alert %>
 		</p>
 		<% end %>
-		<%= yield %>
+		<div class="navmenu navmenu-default navmenu-fixed-left">
+			<ul class="nav navmenu-nav getgo-menu">
+				<!-- The first row is dedicated to the user profile or Sign in / Sign up button, pick one -->
+				<!-- <li class="navmenu-account-info">
+				<a href="#"><img src="images/profilepicture.png" alt="..." class="img-circle profile-picture"> Michael Jackson</a>
+				</li> -->
+				<% if user_signed_in? %>
+				Logged in as <strong><%= current_user.email %></strong>.
+				<%= image_tag current_user.gravatar_url %>
+
+				<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
+				<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+				<% else %>
+				<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+				<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+				<% end %>
+				<li class="navmenu-account-info">
+					<a href="#">Sign in</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-getgo_symbol"></i>Home</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-roadmap-icon"></i>Roadmap</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-library-icon"></i>Library</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-settlebuddy-icon"></i>Settle buddy</a>
+				</li>
+				<li>
+					<a href="#"><i class="icon-forum-icon"></i>Forum</a>
+				</li>
+				<!-- <li><a href="#"><i class="icon-search-icon"></i>Search</a></li> -->
+				<!-- <li><a href="#"><i class="icon-help-icon"></i>Help</a></li> -->
+				<!-- <li><a href="#"><i class="icon-settings-icon"></i>Settings</a></li> -->
+			</ul>
+		</div>
+
+		<div class="canvas">
+			<div class="navbar navbar-default navbar-fixed-top">
+				<a class="navbar-getgo-logo" href="#"><i class="icon-getgo_symbol"></i></a>
+				<p class="navbar-page-title">
+					Sign in
+				</p>
+				<!-- USER INFO GOES HERE, welcome message, profil picture, messages/chat icon, bell icon for notification -->
+				<ul class="nav navbar-nav navbar-right getgo-top-nav">
+					<li>
+						<a href="#">Sign up</a>
+					</li>
+				</ul>
+				<button type="button" class="navbar-toggle hamburger" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+					<span class="icon-bar top-bar"></span>
+					<span class="icon-bar middle-bar"></span>
+					<span class="icon-bar bottom-bar"></span>
+				</button>
+			</div>
+			<!-- #### GETGO CONTENT WRAPPER #### -->
+			<div class="getgo-content">
+				<div class="container-fluid">
+
+					<%= yield %>
+
+				</div><!-- /.container -->
+			</div><!-- /.getgo-content -->
+			<footer>
+				<p>
+					<i class="icon-getgo_logo"></i>
+				</p>
+				<p>
+					2015 &copy; GETGO - All rights reserved
+				</p>
+			</footer>
+		</div><!-- /canvas -->
 
 	</body>
 </html>
