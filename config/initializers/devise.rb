@@ -11,7 +11,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'info@getgoabroad.com'
-
+  config.secret_key = 'a53c77953b04543ab81fa930a15dd63dfc2e1456a3fc9afa7078136fc6397203d2cd4a9e5813cddeb6b02f3f7ac5b76df09fcd2136416d9072d5c4c0a579796f'
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
