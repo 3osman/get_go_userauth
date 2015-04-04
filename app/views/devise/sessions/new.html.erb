@@ -9,7 +9,7 @@
 						<i class="icon-getgo_logo"></i>
 					</div>
 					<h3>Sign in</h3>
-										<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 					<div class="input-icon">
 						<span class="fa-envelope fa"></span>
@@ -23,25 +23,34 @@
 						<%= f.password_field :password, autocomplete: "off", class:'form-control',placeholder: 'Password'%>
 
 					</div>
-					<%= f.submit "Login", class:'btn btn-block btn-success btn-embossed' %>
+					<%= f.button "Login", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
+					<h3>or</h3>
+					<%- resource_class.omniauth_providers.each do |provider| %>
+					<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),class:'btn btn-block btn-facebook btn-embossed'%>
 
+					<% end -%>
 					<div class="login-action clearfix">
 						<div class="row">
 							<div class="col-xs-6">
+								<a href"">
 								<% if devise_mapping.rememberable? -%>
-								<%= f.check_box :remember_me %>
-								<%= f.label :remember_me, class:"checkbox", for:"checkbox1" %>
-
-								<% end -%>
+								<%= f.check_box :remember_me, :style => "width: 20px; height: 20px;" %>
+Remember Me</a>								<% end -%>
 
 							</div>
+							
 							<% end %>
 
-							<div class="col-xs-6">
-								<%= render "devise/shared/links" %>
+							
 
-							</div>
+						<div class="col-xs-6">
+								<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+								<%= link_to "Forgot your password?", new_password_path(resource_name),class:'pull-right' %>
+								<br />
+								<% end -%>
 						</div>
+												</div>
+
 					</div>
 				</div>
 

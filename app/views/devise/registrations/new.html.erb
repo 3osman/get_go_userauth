@@ -145,12 +145,12 @@
 						</div>
 						<%= f.label :settlebuddy %>
 					</div>
-					<%= f.submit "Sign up",class:"btn btn-block btn-success btn-embossed" %>
+					<%= f.button "Sign up", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
+
 					<% end %>
 
 					<h3>or</h3>
 					<%- resource_class.omniauth_providers.each do |provider| %>
-					<i class="fa fa-facebook" style="padding-right: 10px"></i>
 					<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),class:'btn btn-block btn-facebook btn-embossed'%>
 
 					<% end -%>
