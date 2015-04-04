@@ -9,7 +9,7 @@
 .canvas {
   position: relative;
   left: 0;
-  z-index: 2;
+  z-index: 3;
   min-height: 100%;
   padding: 0 0 0 0;
   background-color: #EDEFF0;
@@ -20,8 +20,13 @@
 }
 
 .container-fluid {
-  padding: 0px 5px;
+  padding: 0px 10px;
 }
+
+dt {
+  font-family: "OmnesSemibold", "SourceSansPro", Helvetica, Arial, sans-serif;
+}
+
 
 /****** NAVBAR ******/
 .navbar {
@@ -309,6 +314,9 @@
 .roadmap-comment button {
   margin-left: 5px;
 }
+.roadmap-comment {
+  padding-top: 15px;
+}
 
 /* Roadmap navigation */
 .nav-roadmap>li {
@@ -457,6 +465,12 @@
 .moving .round-button-circle:active {
   border-color: #EC7886;
 }
+.residence-permit.active,
+.residence-permit .round-button-circle:hover,
+.residence-permit .round-button-circle:focus,
+.residence-permit .round-button-circle:active {
+  border-color: #F58C66;
+}
 
 /****** ROADMAP ACCORDION ELEMENTS ******/
 
@@ -515,6 +529,74 @@
   color: #44B782;
 }
 
+/****** Profile page ******/
+
+.profile {
+  padding: 10px;
+}
+
+.profile img {
+  border: 5px solid #BFC7CE;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.profile-details .bootstrap-select,
+.profile-details .input,
+.profile-details .input-icon {
+  margin-bottom: 10px;
+}
+.profile-details > .bootstrap-select > button {
+  background-color: #fff;
+  border: 1px solid #D4D9DD;
+  color: #3D474F;
+  margin:0px;
+}
+.profile-details > .bootstrap-select > button:focus,
+.profile-details > .open > .dropdown-toggle.btn-default:focus {
+  outline: none !important;
+}
+.profile-details > .open > .dropdown-toggle.btn-default {
+  background-color: #fff;
+  border-color: #02baf2;
+  color: #02baf2;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;  
+  box-shadow: none;
+}
+.profile-details .save-changes{
+  padding: 3px 0px;
+}
+
+/****** LIBRARY ******/
+
+.library-search input {
+  border: none;
+}
+.library-search .search-icon {
+  color: #3D474F;
+  font-size: 15px;
+}
+.library-search h6 {
+  margin-top: 6px;
+  margin-bottom: 0px;
+}
+.library-search .switch-wrapper {
+  margin-left: 5px;
+}
+.library-search .btn{
+  position: absolute;
+  bottom:   0;
+}
+
+
+.request-button {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
+  width: 100%;
+  padding: 0px 15px;
+}
+
 
 /****** STARRR RATING ******/
 
@@ -563,6 +645,9 @@
 .panel-library .fa-stack-1x {
   color: #3D474F;
 }
+.panel-library:hover .category-icon {
+  opacity: 1.0;
+}
 .row-same-height {
     display: table;
     width: 100%;
@@ -588,6 +673,11 @@
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   text-align: center;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  opacity: 0.8;
 }
 .icon-vertical{
   font-size: 36px;
@@ -615,9 +705,26 @@
 .library-roadmap-details i {
   padding-right: 10px;
 }
-.library-roadmap-rating {
-
+.library-filter ul{
+  margin: 0px;
 }
+.library-filter li  a {
+  color: #fff;
+  opacity: 0.7;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.library-filter li  a:hover {
+  opacity: 1.0;
+}
+.library-filter .panel-default {
+  background: #3D474F;
+  color: #ffffff;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
 
 
 /****** FOOTER ******/
@@ -654,7 +761,7 @@ footer p {
 .housing-color{
   background-color: #5EC3BC;
 }
-.caf-color{
+.housing-allowance-color{
   background-color: #009DCD;
 }
 .health-insurance-color{
@@ -675,8 +782,51 @@ footer p {
 .roadmap-color{
   background-color: #FAD46B;
 }
-.living-color{
+.residence-permit-color{
   background-color: #F58C66;
+}
+
+/* TAGS for settle buddies */
+
+.bank-tag{
+  color: #44B782;
+  padding-right: 4px;
+}
+.housing-tag{
+  color: #5EC3BC;
+  padding-right: 4px;
+}
+.housing-allowance-tag{
+  color: #009DCD;
+  padding-right: 4px;
+}
+.health-insurance-tag{
+  color: #E74343;
+  padding-right: 4px;
+}
+.visa-tag{
+  color: #F3BC65;
+  padding-right: 4px;
+}
+.telecommunication-tag{
+  color: #9175BD;
+  padding-right: 4px;
+}
+.moving-tag{
+  color: #EC7886;
+  padding-right: 4px;
+}
+.public-transport-tag{
+  color: #768FC7;
+  padding-right: 4px;
+}
+.roadmap-tag{
+  color: #FAD46B;
+  padding-right: 4px;
+}
+.residence-permit-tag{
+  color: #F58C66;
+  padding-right: 4px;
 }
 
 

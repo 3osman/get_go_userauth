@@ -2292,6 +2292,8 @@ select[multiple].input-lg {
 }
 .tile-profile {
   background-color: #ffffff;
+  margin-bottom: 25px;
+  padding-bottom: 60px;
 }
 .tile-profile img {
   border: 5px solid #BFC7CE;

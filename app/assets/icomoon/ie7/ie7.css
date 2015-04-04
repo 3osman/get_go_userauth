@@ -1,22 +1,19 @@
-.icon-home {
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf015;');
-}
 .icon-plane {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf072;');
 }
 .icon-credit-card {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf09d;');
 }
-.icon-globe {
+.icon-visa {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0ac;');
 }
 .icon-money {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0d6;');
 }
-.icon-user-md {
+.icon-health-insurance {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f0;');
 }
-.icon-suitcase {
+.icon-moving {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f2;');
 }
 .icon-medkit {
@@ -40,23 +37,23 @@
 .icon-hotel {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf236;');
 }
-.icon-subway {
+.icon-public-transport {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf239;');
 }
-.icon-home2 {
+.icon-housing {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe600;');
 }
-.icon-old-mobile {
+.icon-telecommunication {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe601;');
 }
-.icon-suitcase2 {
-	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe602;');
-}
-.icon-v-card {
+.icon-residence-permit {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe603;');
 }
 .icon-wallet {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe604;');
+}
+.icon-housing-benefit {
+	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe605;');
 }
 .icon-forum-icon {
 	*zoom: expression(this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#x6a;');
