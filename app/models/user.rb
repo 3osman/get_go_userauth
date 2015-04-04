@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.name = auth.info.name
       user.password = Devise.friendly_token[0,20]
-      user.birthdate = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
     end
   end
 
@@ -30,7 +29,6 @@ class User < ActiveRecord::Base
         user.name = data["name"] if user.name.blank?
         user.provider = "facebook" if user.provider.blank?
         user.uid = data["id"] if user.uid.blank?
-        user.birthdate = Date.strptime(data["extra"]["raw_info"]["birthday"],'%m/%d/%Y')
 
       end
     end
