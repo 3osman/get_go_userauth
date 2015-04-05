@@ -35,23 +35,29 @@
 						<span class="fa-user fa"></span>
 						<%= f.text_field :name, class:"form-control", placeholder:"Name" %>
 					</div>
-					
 
-					
-					<%= f.select :country_of_origin, options_for_select([ "Europe", "Non-Europe" ], "Europe"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
-					<%= f.select :city_of_studies, options_for_select([ "Paris", "London","Berlin","Amsterdam" ], "Paris"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					<div class="input-icon">
+						<%= f.select :country_of_origin, options_for_select([ "Europe", "Non-Europe" ], ,selected:"Country of Origin", :disabled=> "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
-					<%= f.select :duration, options_for_select([ "Less than 6 months", "More than 6 months" ], "Less than 6 months"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					</div>
+					<div class="input-icon">
 
-												<div class="input-icon center" style="margin-bottom: 10px;">
+						<%= f.select :city_of_studies, options_for_select([ "Paris", "London","Berlin","Amsterdam" ],selected:"City of Studies", :disabled=> "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					</div>
+					<div class="input-icon">
+
+						<%= f.select :duration, options_for_select([ "Less than 6 months", "More than 6 months" ], ,selected:"Duration of Stay", :disabled=> "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					</div>
+
+					<div class="input-icon center" style="margin-bottom: 10px;">
 
 						<font size="4.5" ><em> I want to be a settle buddy<a href="" class="center" data-toggle="modal" data-target="#GSCCModal" > <sup>(?)</sup></a></em></font>
-						</div>
-						<div class="input-icon center">
-						<%= f.check_box :settlebuddy, style: "width: 20px; height: 20px; padding-top: 25px;"%>
-						
 					</div>
-					
+					<div class="input-icon center">
+						<%= f.check_box :settlebuddy, style: "width: 20px; height: 20px; padding-top: 25px;"%>
+
+					</div>
+
 					<%= f.button "Sign up", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
 
 					<% end %>
