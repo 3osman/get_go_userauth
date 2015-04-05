@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
               :omniauthable,:confirmable, :omniauth_providers => [:facebook]
   validates :name, presence: true
-  validates :country, presence: true
-  validates :university, presence: true
+  validates :country_of_origin, presence: true
+  validates :city_of_studies, presence: true
   validates :duration, presence: true
   validates :birthdate, presence: true
   def self.from_omniauth(auth)
