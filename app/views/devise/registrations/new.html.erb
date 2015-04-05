@@ -35,39 +35,22 @@
 						<span class="fa-user fa"></span>
 						<%= f.text_field :name, class:"form-control", placeholder:"Name" %>
 					</div>
-					<div class="input-icon" style="margin-top: 5px;">
-						<%= f.text_field :country, class:"form-control", placeholder:"Name" %>
-											</div>
+					
 
-						<div class="input-icon" style="margin-top: 5px;">
-						<%= f.text_field :university, class:"form-control", placeholder:"Name" %>
-					</div>
-
-					<select class="selectpicker">
-						<option value="" disabled selected>Country of origin</option>
-						<option>Europe</option>
-						<option>Non-Europe</option>
-					</select>
-					<select class="selectpicker">
-						<option value="" disabled selected>City of studies</option>
-						<option>Paris</option>
-						<option>London</option>
-						<option>Berlin</option>
-						<option>Amsterdam</option>
-						<option>Stockholm</option>
-						<option>Trento</option>
-					</select>
+					
+					<%= f.select :country_of_origin, options_for_select([ "Europe", "Non-Europe" ], "Europe"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					<%= f.select :city_of_studies, options_for_select([ "Paris", "London","Berlin","Amsterdam" ], "Paris"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
 					<%= f.select :duration, options_for_select([ "Less than 6 months", "More than 6 months" ], "Less than 6 months"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
-					<DIV>
 												<div class="input-icon center" style="margin-bottom: 10px;">
 
 						<font size="4.5" ><em> I want to be a settle buddy<a href="" class="center" data-toggle="modal" data-target="#GSCCModal" > <sup>(?)</sup></a></em></font>
+						</div>
+						<div class="input-icon center">
 						<%= f.check_box :settlebuddy, style: "width: 20px; height: 20px; padding-top: 25px;"%>
 						
 					</div>
-					</DIV>
 					
 					<%= f.button "Sign up", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
 
