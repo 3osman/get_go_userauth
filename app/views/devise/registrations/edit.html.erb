@@ -61,16 +61,16 @@
 
 				</div>
 				<div class="input-icon">
-						<%= f.select :country_of_origin, options_for_select([ "Country of Origin","Europe", "Non-Europe" ],selected:"<%= current_user.country_of_origin %>", disabled: "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+						<%= f.select :country_of_origin, options_for_select([ "Country of Origin","Europe", "Non-Europe" ],selected:current_user.country_of_origin, disabled: "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
 					</div>
 					<div class="input-icon">
 
-						<%= f.select :city_of_studies, options_for_select([ "City of Studies","Paris", "London","Berlin","Amsterdam" ],selected:"<%= current_user.city_of_studies%>", disabled: "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+						<%= f.select :city_of_studies, options_for_select([ "City of Studies","Paris", "London","Berlin","Amsterdam" ],selected:current_user.city_of_studies, disabled: "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 					</div>
 					<div class="input-icon">
 
-						<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:""<%= current_user.duration%>"", disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+						<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:current_user.duration, disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 					</div>
 
 
