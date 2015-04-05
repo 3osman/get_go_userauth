@@ -10,9 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require bootstrap.min.js
-//= require bootstrap-switch.js
-//= require bootstrap-select.min.js
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
@@ -20,8 +17,10 @@
 //= require jasny-bootstrap.js
 //= require checkbox.js
 //= require radio.js
+//= require bootstrap-switch.js
 //= require toolbar.js
 //= require starrr.js
+//= require bootstrap-select.min.js
 //= require jquery.matchHeight.js
 //= require getgo.js
 

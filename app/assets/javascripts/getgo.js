@@ -47,6 +47,8 @@ ready = function() {
 
 // Bootstrap input select
 $('.selectpicker').selectpicker();
+$('.dropdown-toggle').dropdown()  
+
 
 
 };
