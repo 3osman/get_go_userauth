@@ -1,69 +1,100 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="row profile text-center">
+	<div class="col-md-6">
+		<%= image_tag current_user.gravatar_url, width:"150" ,height:"150", alt:"" %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+		<h4><%= current_user.name%></h4>
 
-  <div class="field">
-    <%= f.label :password %> <em>(leave blank if you don't want to change it)</em><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+		<div class="user-rating">
+			<%for i in 1..current_user.rating%>
+			<i class="fa fa-star"></i>
+			<%end%>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+			<%for i in 1..(5-current_user.rating)%>
 
-  <div class="field">
-    <%= f.label :current_password %> <em>(we need your current password to confirm your changes)</em><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-<div class="field">
-	<%= f.label :name %>
-	<br>
-	<%= f.text_field :name %>
-</div>
-<div class="field">
-	<%= f.label :country %>
-	<br>
-	<%= f.text_field :country %>
-</div>
-<div class="field">
-	<%= f.label :university %>
-	<br>
-	<%= f.text_field :university %>
-</div>
-<div class="field">
-	<%= f.label :duration %>
-	<br>
-	<%= f.text_field :duration %>
-</div>
-<div class="field">
-	<%= f.label :birthdate %>
-	<br>
-	<%= f.date_field :birthdate %>
-</div>
-<div class="field">
-	<%= f.label :settlebuddy %>
-	<br>
-	<%= f.check_box :settlebuddy %>
+			<i class="fa fa-star star-gray"></i>
+			<%end%>
+		</div>
+	</div>
+	<!-- rating -->
 </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
+<div class="row">
+	<div class="col-md-6 col-sm-12">
+		<div class="panel panel-default">
+			<div class="panel-body profile-details">
+				<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+				<%= devise_error_messages! %>
+				<h5>Roadmap settings:</h5>
+				<div class="text-left">
+					Public roadmap <span class="pull-right"> <%= f.check_box :public_roadmap,style:"width: 20px; height: 20px;"%> </span>
+				</div>
 
-<h3>Cancel my account</h3>
+				<h5>Settlebuddy settings:</h5>
+				<div class="text-left">
+					Settlebuddy <span class="pull-right"> <%= f.check_box :settlebuddy,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<h5 style="margin-top: 30px">Personal details:</h5>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+				<div class="input-icon">
+					<span class="fa-envelope fa"></span>
+					<%= f.email_field :email, class:"form-control" %>
+				</div>
+				<div class="input-icon">
+					<span class="fa-lock fa"></span>
+					<%= f.password_field :password, class:"form-control",autocomplete: "off",placeholder:"New Password, leave it blank if you don't want to change it"  %>
+				</div>
+				<div class="input-icon">
+					<span class="fa-lock fa"></span>
+					<%= f.password_field :password_confirmation, class:"form-control",autocomplete: "off",placeholder:"New Password confirmation"  %>
+				</div>
+				<div class="input-icon">
+					<span class="fa-lock fa"></span>
+					<%= f.password_field :current_password, class:"form-control",autocomplete: "off", placeholder:"Current Password, Required"  %>
+				</div>
+				<div class="input-icon">
+					<span class="fa-calendar fa"></span>
+					<%= f.date_field :birthdate, class:"form-control" %>
+				</div>
+				<div class="input-icon">
+					<span class="fa-user fa"></span>
+					<%= f.text_field :name, class:"form-control" %>
 
-<%= link_to "Back", :back %>
+				</div>
+				<select class="selectpicker">
+					<option value="" disabled>Country of origin</option>
+					<option>Europe</option>
+					<option selected>Non-Europe</option>
+				</select>
+				<select class="selectpicker">
+					<option value="" disabled>City of studies</option>
+					<option selected>Paris</option>
+					<option>London</option>
+					<option>Berlin</option>
+					<option>Amsterdam</option>
+					<option>Stockholm</option>
+					<option>Trento</option>
+				</select>
+				<select class="selectpicker">
+					<option value="" disabled >Duration of studies</option>
+					<option selected>Less than 6 months</option>
+					<option>More than 6 months</option>
+				</select>
+
+				<div class="col-md-6 col-xs-12 col-sm-6 pull-right save-changes">
+					<%= f.button "Save changes", :submit => "", class: "btn btn-block btn-sm btn-primary btn-embossed" %>
+<br>
+				<% end %>
+
+					<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-block btn-sm btn-danger btn-embossed" %>
+					<br>
+<%= link_to "Back", :back, class:"pull-right" %>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
