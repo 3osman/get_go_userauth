@@ -41,9 +41,17 @@ $(window).scroll(function() {
 
 })(jQuery);
 
+
+var ready;
+ready = function() {
+
 // Bootstrap input select
 $('.selectpicker').selectpicker();
 
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
 
 // Roadmap finish subtask
 $('.panel-title-btn').click(function(event) {
