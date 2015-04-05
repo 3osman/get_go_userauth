@@ -10,12 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require bootstrap.min.js
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery-1.11.2.min.js
-//= require bootstrap.min.js
 //= require jasny-bootstrap.js
 //= require checkbox.js
 //= require radio.js
