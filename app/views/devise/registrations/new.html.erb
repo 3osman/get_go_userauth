@@ -36,15 +36,15 @@
 						<%= f.text_field :name, class:"form-control", placeholder:"Name" %>
 					</div>
 
-					<div class="input-icon">
+					<div class="input-icon" style="margin-bottom: 5px;">
 						<%= f.select :country_of_origin, options_for_select([ "Country of Origin","Europe", "Non-Europe" ],selected:"Country of Origin", disabled: "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
 					</div>
-					<div class="input-icon">
+					<div class="input-icon" style="margin-bottom: 5px;">
 
 						<%= f.select :city_of_studies, options_for_select([ "City of Studies","Paris", "London","Berlin","Amsterdam" ],selected:"City of Studies", disabled: "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 					</div>
-					<div class="input-icon">
+					<div class="input-icon" style="margin-bottom: 5px;">
 
 						<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:"Duration of Stay", disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 					</div>
