@@ -18,7 +18,7 @@
 
 					</div>
 
-					<div class="input-icon">
+					<div class="input-icon" style="margin-top: 5px;">
 						<span class="fa-lock fa"></span>
 						<%= f.password_field :password, autocomplete: "off", class:'form-control',placeholder: 'Password'%>
 
@@ -26,30 +26,29 @@
 					<%= f.button "Login", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
 					<h3>or</h3>
 					<%- resource_class.omniauth_providers.each do |provider| %>
-					<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),class:'btn btn-block btn-facebook btn-embossed'%>
+
+					<%= link_to '<i class="fa fa-facebook" style="padding-right: 10px"></i>Sign in with Facebook'.html_safe, omniauth_authorize_path(resource_name, provider), class:'btn btn-block btn-facebook btn-embossed'%>
 
 					<% end -%>
 					<div class="login-action clearfix">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href"">
-								<% if devise_mapping.rememberable? -%>
-								<%= f.check_box :remember_me, :style => "width: 20px; height: 20px;" %>
-Remember Me</a>								<% end -%>
+								
+								<a href""> <% if devise_mapping.rememberable? -%>
+								<%= f.check_box :remember_me, style: "width: 20px; height: 20px;" %>
+								Remember Me</a>								<% end -%>
 
 							</div>
-							
+
 							<% end %>
 
-							
-
-						<div class="col-xs-6">
+							<div class="col-xs-6">
 								<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
 								<%= link_to "Forgot your password?", new_password_path(resource_name),class:'pull-right' %>
 								<br />
 								<% end -%>
+							</div>
 						</div>
-												</div>
 
 					</div>
 				</div>

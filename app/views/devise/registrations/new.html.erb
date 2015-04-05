@@ -1,91 +1,3 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-<%= devise_error_messages! %>
-
-<div class="field">
-	<%= f.label :country %>
-	<br>
-	<%= f.text_field :country %>
-</div>
-<div class="field">
-	<%= f.label :university %>
-	<br>
-	<%= f.text_field :university %>
-</div>
-<div class="field">
-	<%= f.label :duration %>
-	<br>
-	<%= f.text_field :duration %>
-</div>
-
-<div class="actions">
-	<%= f.submit "Sign up" %>
-</div>
-<% end %>
- <div class="getgo-content">
-        <div class="container-fluid">
-          <div class="row" style="margin-top:30px;">
-            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-              <div class="tile tile-signup">
-                <div class="getgo-logo"><i class="icon-getgo_logo"></i></div>
-                <h3>Sign up</h3>
-                <div class="input-icon">
-                  <span class="fa-user fa"></span>
-                  <input type="text" class="form-control" placeholder="Username">
-                </div>
-                <div class="input-icon">
-                  <span class="fa-envelope fa"></span>
-                  <input type="text" class="form-control" placeholder="E-mail address">
-                </div>
-                <div class="input-icon">
-                  <span class="fa-calendar fa"></span>
-                  <input type="text" class="form-control" placeholder="Date of birth (DD/MM/YYYY)">
-                </div>
-                <div class="input input-required">
-                  <input type="text" class="form-control" required placeholder="First Name">
-                </div>
-                <div class="input">
-                  <input type="text" class="form-control" placeholder="Last Name">
-                </div>
-                <select class="selectpicker">
-                  <option value="" disabled selected>Country of origin</option>
-                  <option>Europe</option>
-                  <option>Non-Europe</option>
-                </select>
-                <select class="selectpicker">
-                  <option value="" disabled selected>City of studies</option>
-                  <option>Paris</option>
-                  <option>London</option>
-                  <option>Berlin</option>
-                  <option>Amsterdam</option>
-                  <option>Stockholm</option>
-                  <option>Trento</option>
-                </select>
-                <select class="selectpicker">
-                  <option value="" disabled selected>Duration of studies</option>
-                  <option>Less than 6 months</option>
-                  <option>More than 6 months</option>
-                </select>
-                <div class="input-icon" style="margin-top: 20px;">
-                  <span class="fa-lock fa"></span>
-                  <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <div class="input-icon" style="margin-bottom: 20px;">
-                  <span class="fa-lock fa"></span>
-                  <input type="password" class="form-control" placeholder="Re-enter password">
-                </div>
-
-                <a href="#fakeLink" class="btn btn-block btn-success btn-embossed">Sign up</a>
-                <h3>or</h3>
-                <a href="#fakeLink" class="btn btn-block btn-facebook btn-embossed"><i class="fa fa-facebook" style="padding-right: 10px"></i>Sign up with facebook</a>
-                <p>Already a user? <a href="#fakeLink">Sign In</a></p>
-              </div>
-
-            </div>
-          </div>
-        </div><!-- /.container -->
-
 <div class="getgo-content">
 	<div class="container-fluid">
 		<div class="row" style="margin-top:30px;">
@@ -103,11 +15,24 @@
 						<%= f.email_field :email, autofocus: true,class:"form-control", placeholder:"E-mail address" %>
 
 					</div>
-					<div class="input-icon">
-						<span class="fa-calendar fa"></span>
-						<%= f.date_field :birthdate, class:"form-control" %>
+					<div class="input-icon" style="margin-top: 5px;">
+						<span class="fa-lock fa"></span>
+
+						<%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:'8 characters minimum' %>
+
 					</div>
-					<div class="input input-required">
+					<div class="input-icon" style="margin-bottom: 0px;">
+						<span class="fa-lock fa"></span>
+						<%= f.password_field :password_confirmation, autocomplete: "off",class:"form-control", placeholder:'Retype Your Password' %>
+					</div>
+					<div class="input-icon" style="margin-top: 0px;">
+						<span class="fa-calendar fa"></span>
+						<%= f.date_field :birthdate,class:"form-control" %>
+
+					</div>
+
+					<div class="input-icon" style="margin-top: 5px;">
+						<span class="fa-user fa"></span>
 						<%= f.text_field :name, class:"form-control", placeholder:"Name" %>
 					</div>
 
@@ -125,33 +50,24 @@
 						<option>Stockholm</option>
 						<option>Trento</option>
 					</select>
-					
-						<%= f.select :duration, options_for_select([ "Less than 6 months", "More than 6 months" ], "Less than 6 months"),{}, {class:"selectpicker"} %>
 
-						
-					<div class="input-icon" style="margin-top: 20px;">
-						<span class="fa-lock fa"></span>
+					<%= f.select :duration, options_for_select([ "Less than 6 months", "More than 6 months" ], "Less than 6 months"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
-						<%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:'8 characters minimum' %>
-
-					</div>
-					<div class="input-icon" style="margin-bottom: 20px;">
-						<span class="fa-lock fa"></span>
-						<%= f.password_field :password_confirmation, autocomplete: "off",class:"form-control" %>
-					</div>
-					<div class="input-icon" style="margin-bottom: 20px;">
-						<div class="pull-left">
-							<%= f.check_box :settlebuddy%> <strong>Settle Buddy</strong>
-						</div>
-						<%= f.label :settlebuddy %>
+					<DIV TITLE="?">
+						<font size="4.5" ><em> I want to be a settle buddy<a href="" class="center" data-toggle="modal" data-target="#GSCCModal" > <sup>(?)</sup></a></em></font>
+						</a>
+					</DIV>
+					<div class="input-icon center" style="margin-bottom: 10px;">
+						<%= f.check_box :settlebuddy, style: "width: 20px; height: 20px;"%>
 					</div>
 					<%= f.button "Sign up", :submit => "", class: "btn btn-block btn-success btn-embossed" %>
 
 					<% end %>
+					<% puts :name%>
 
 					<h3>or</h3>
 					<%- resource_class.omniauth_providers.each do |provider| %>
-					<%= link_to "Sign in with #{provider.to_s.titleize}", omniauth_authorize_path(resource_name, provider),class:'btn btn-block btn-facebook btn-embossed'%>
+					<%= link_to '<i class="fa fa-facebook" style="padding-right: 10px"></i>Sign in with Facebook'.html_safe, omniauth_authorize_path(resource_name, provider), class:'btn btn-block btn-facebook btn-embossed'%>
 
 					<% end -%>
 
@@ -163,3 +79,23 @@
 			</div>
 		</div>
 	</div><!-- /.container -->
+	<div id="GSCCModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						&times;
+					</button>
+					<h4 class="modal-title" id="myModalLabel">What is a settle buddy?</h4>
+				</div>
+				<div class="modal-body">
+					A settle buddy is a feature that allows you to help other students setlle in. With your experience, you can provide hints and easy ways to get the job done. Moreover, you get paid for that.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						Ok
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>

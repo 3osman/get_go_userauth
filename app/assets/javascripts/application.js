@@ -22,7 +22,8 @@
 //= require toolbar.js
 //= require starrr.js
 //= require bootstrap-select.min.js
-//= require application.js
+//= require jquery.matchHeight.js
+//= require getgo.js
 
 
 
