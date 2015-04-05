@@ -80,20 +80,18 @@
 					<option>More than 6 months</option>
 				</select>
 
-				<div class="col-md-6 col-xs-12 col-sm-6 pull-right save-changes">
+				<div class="input-icon">
 					<%= f.button "Save changes", :submit => "", class: "btn btn-block btn-sm btn-primary btn-embossed" %>
 					<br>
 					<% end %>
 				</div>
-				<div class="row">
-					<div class="col-md-6 col-xs-12 col-sm-6 pull-right save-changes">
+					<div class="input-icon">
 
 						<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-block btn-sm btn-danger btn-embossed" %>
 						<br>
 						<%= link_to "Back", :back, class:"pull-right" %>
 					</div>
 
-				</div>
 
 			</div>
 		</div>
