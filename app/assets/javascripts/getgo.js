@@ -48,6 +48,7 @@ ready = function() {
 // Bootstrap input select
 $('.selectpicker').selectpicker();
 
+
 };
 
 $(document).ready(ready);
