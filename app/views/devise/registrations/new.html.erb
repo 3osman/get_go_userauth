@@ -48,15 +48,8 @@
 
 						<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:"Duration of Stay", disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 					</div>
-
-					<div class="input-icon center" style="margin-bottom: 5px;">
-
-						<font size="4.5" ><em> I want to be a settle buddy<a href="" class="center" data-toggle="modal" data-target="#GSCCModal" > <sup>(?)</sup></a></em></font>
-					</div>
-					<div class="input-icon center">
-						
-						<%= f.check_box :settlebuddy, style: "width: 20px; height: 20px;"%>
-
+					<div class="text-left">
+						<font size="4.5" ><em> I want to be a settle buddy<a href="" class="center" data-toggle="modal" data-target="#GSCCModal" > <sup>(?)</sup></a></em></font><span class="pull-right"> <%= f.check_box :settlebuddy,style:"width: 20px; height: 20px;"%> </span>
 					</div>
 
 					<%= f.button "Sign up", :submit => "", class: "btn btn-block btn-success btn-embossed" %>

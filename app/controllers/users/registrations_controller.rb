@@ -52,7 +52,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :country, :city_of_studies, :country_of_origin, :birthdate, :settlebuddy)
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :country, :city_of_studies, :country_of_origin, :duration,:birthdate, :settlebuddy)
   end
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
