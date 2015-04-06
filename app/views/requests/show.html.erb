@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Settle buddy:</strong>
+  <%= @request.settle_buddy_id %>
+</p>
+
+<p>
+  <strong>Client:</strong>
+  <%= @request.client_id %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @request.status %>
+</p>
+
+<%= link_to 'Edit', edit_request_path(@request) %> |
+<%= link_to 'Back', requests_path %>

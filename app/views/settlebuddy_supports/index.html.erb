@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Settlebuddy Supports</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bank</th>
+      <th>Visa</th>
+      <th>Housing</th>
+      <th>Public transport</th>
+      <th>Caf</th>
+      <th>Telecommunication</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @settlebuddy_supports.each do |settlebuddy_support| %>
+      <tr>
+        <td><%= settlebuddy_support.bank %></td>
+        <td><%= settlebuddy_support.visa %></td>
+        <td><%= settlebuddy_support.housing %></td>
+        <td><%= settlebuddy_support.public_transport %></td>
+        <td><%= settlebuddy_support.caf %></td>
+        <td><%= settlebuddy_support.telecommunication %></td>
+        <td><%= settlebuddy_support.user_id %></td>
+        <td><%= link_to 'Show', settlebuddy_support %></td>
+        <td><%= link_to 'Edit', edit_settlebuddy_support_path(settlebuddy_support) %></td>
+        <td><%= link_to 'Destroy', settlebuddy_support, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Settlebuddy support', new_settlebuddy_support_path %>

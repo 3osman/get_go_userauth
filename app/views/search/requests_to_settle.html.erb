@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>getgo</title>
-		<%= stylesheet_link_tag    'application', media: 'all'%>
-		<%= javascript_include_tag 'application'%>
-		<%= csrf_meta_tags %>
+		<title>Roadmap</title>
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="The single source of all the neccessary information to settle down abroad for international student.">
@@ -30,10 +28,31 @@
 		<meta name="msapplication-wide310x150logo" content="http://www.getgoabroad.com/mstile-310x150.png" />
 		<meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
 
-		<title>Sign in</title>
-		<%= yield :head %>
+		<%= stylesheet_link_tag    'bootstrap.min', media: 'all'%>
+		<%= stylesheet_link_tag    'jasny-bootstrap', media: 'all'%>
+		<%= stylesheet_link_tag    'font-awesome.min', media: 'all'%>
 
+		<%= stylesheet_link_tag    'drunken-parrot', media: 'all'%>
+		<%= stylesheet_link_tag    'style', media: 'all'%>
+		<%= stylesheet_link_tag    'bootstrap-select.min', media: 'all'%>
+
+		<%= stylesheet_link_tag    'getgo', media: 'all'%>
+		<%= javascript_include_tag 'jquery-1.11.2.min' %>
+		<%= javascript_include_tag 'bootstrap.min' %>
+		<%= javascript_include_tag 'bootstrap-select.min' %>
+
+		<%= csrf_meta_tags %>
+
+		<!-- Just for debugging purposes. Don't actually copy this line! -->
+		<!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
 	</head>
+
 	<body data-spy="scroll" data-target="#sidenav" data-offset="100">
 
 		<div class="navmenu navmenu-default navmenu-fixed-left">
@@ -43,12 +62,7 @@
 				<a href="#"><img src="images/profilepicture.png" alt="..." class="img-circle profile-picture"> Michael Jackson</a>
 				</li> -->
 
-				<% if !(user_signed_in?) %>
-				<li>
-					<%= link_to  controller: "/static_pages", action: "home" do %>
-					<i class="icon-getgo_symbol"></i>Home<% end %>
-				</li>
-				<%else%>
+				<% if user_signed_in? %>
 
 				<li>
 					<a href="/"><i class="icon-roadmap-icon"></i>Roadmap</a>
@@ -56,7 +70,7 @@
 				<li>
 					<a href="#"><i class="icon-library-icon"></i>Library</a>
 				</li>
-				<li>
+				<li class ="active">
 					<%= link_to  controller: "/search", action: "settlebuddies" do %>
 					<i class="icon-settlebuddy-icon"></i>Settle Buddy<% end %>
 				</li>
@@ -92,7 +106,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<%= link_to "Logout", "/logout", class: 'navbar-link'  %>
+								<%= link_to "Logout", "/logout", :class => 'navbar-link'  %>
 							</li>
 						</ul>
 					</li>
@@ -120,19 +134,100 @@
 			<!-- #### GETGO CONTENT WRAPPER #### -->
 			<div class="getgo-content">
 				<div class="container-fluid">
-					<% if notice %>
-					<p class="alert alert-success">
-						<%= notice %>
-					</p>
-					<% end %>
-					<% if alert %>
-					<p class="alert alert-danger">
-						<%= alert %>
-					</p>
-					<% end %>
+					<h3>Your Requests</h3>
 
-					<%= yield %>
+					<!-- LIST OF Settle buddies -->
+					<div class="row">
+						<% Request.where(settle_buddy_id: current_user.id).find_each do |request|%>
+						<!-- Settle buddy item-->
+						<%user = User.where(id: request.client_id).first%>
+						<div class="col-md-4 col-sm-6">
+							<div class="tile tile-profile">
 
+								<!-- <div class="starrr"></div> -->
+								<%= image_tag user.gravatar_url, width:"128" ,height:"128", alt:"" %>
+
+								<h4><%= user.name%></h4>
+
+								<div class="user-rating">
+									<%for i in 1..user.rating%>
+									<i class="fa fa-star"></i>
+									<%end%>
+
+									<%for i in 1..(5-user.rating)%>
+
+									<i class="fa fa-star star-gray"></i>
+									<%end%>
+								</div>
+
+								<div class="buddy-info">
+									<div class="buddy-location">
+										<i class="fa fa-home"></i> <%= user.country_of_origin%> <i class="fa fa-graduation-cap"></i> <%= user.city_of_studies%>
+									</div>
+									<%if user.settlebuddy?%>
+									<% support = user.settlebuddy_support%>
+									<ul class="list-inline">
+										<%if support.bank?%>
+										<li>
+											<i class="fa fa-circle bank-tag"></i>Bank
+										</li>
+										<%end%>
+										<%if support.visa?%>
+
+										<li>
+											<i class="fa fa-circle visa-tag"></i>Visa
+										</li>
+										<%end%>
+
+										<%if support.housing?%>
+
+										<li>
+											<i class="fa fa-circle housing-tag"></i>Housing
+										</li>
+										<%end%>
+
+										<%if support.public_transport?%>
+
+										<li>
+											<i class="fa fa-circle public-transport-tag"></i>Public transport
+										</li>
+										<%end%>
+
+										<%if support.caf?%>
+
+										<li>
+											<i class="fa fa-circle housing-allowance-tag"></i>Hosuing allowance (CAF)
+										</li>
+										<%end%>
+
+										<%if support.telecommunication?%>
+
+										<li>
+											<i class="fa fa-circle telecommunication-tag"></i>Telecommunication
+										</li>
+										<%end%>
+									</ul>
+									<%end%>
+								</div>
+								<div class="request-button">
+									<%if request.status==1%>
+									<%= link_to 'Accept Request', {:controller => "search", :action => "settle_request", :request_id => request.id }, class:'btn btn-block btn-primary btn-embossed domi-test'%>
+									<%elsif request.status==0%>
+									<a href="#" class="btn btn-block btn-warning btn-embossed domi-test">Deleted</a>
+
+									<%elsif request.status==2%>
+									<a href="#" class="btn btn-block btn-success btn-embossed domi-test">Accepted</a>
+
+									<%end%>
+								</div>
+							</div>
+						</div>
+
+						<%end%>
+						<!-- You can add as many settle buddies as you want -->
+
+					</div>
+					<!-- /row -->
 				</div><!-- /.container -->
 			</div><!-- /.getgo-content -->
 			<footer>
@@ -144,6 +239,19 @@
 				</p>
 			</footer>
 		</div><!-- /canvas -->
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<%= javascript_include_tag 'jasny-bootstrap' %>
+		<%= javascript_include_tag 'checkbox' %>
+		<%= javascript_include_tag 'radio' %>
+		<%= javascript_include_tag 'bootstrap-switch' %>
+		<%= javascript_include_tag 'toolbar' %>
+		<%= javascript_include_tag 'starrr' %>
+		<%= javascript_include_tag 'jquery.matchHeight' %>
+
+		<%= javascript_include_tag 'getgo' %>
 
 	</body>
 </html>

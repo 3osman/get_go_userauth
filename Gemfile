@@ -11,6 +11,8 @@ gem 'certified'
 gem 'sass-rails', '~> 5.0'
 gem 'gravtastic'
 gem 'mail_form'
+gem 'deep_cloneable', '~> 2.1.1'
+
 
 gem 'bootstrap-select-rails'
 # Use Uglifier as compressor for JavaScript assets

@@ -27,7 +27,7 @@
 		<meta name="msapplication-square150x150logo" content="http://www.getgoabroad.com/mstile-150x150.png" />
 		<meta name="msapplication-wide310x150logo" content="http://www.getgoabroad.com/mstile-310x150.png" />
 		<meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
-		
+
 		<%= stylesheet_link_tag    'bootstrap.min', media: 'all'%>
 		<%= stylesheet_link_tag    'jasny-bootstrap', media: 'all'%>
 		<%= stylesheet_link_tag    'font-awesome.min', media: 'all'%>
@@ -37,7 +37,7 @@
 		<%= stylesheet_link_tag    'bootstrap-select.min', media: 'all'%>
 
 		<%= stylesheet_link_tag    'getgo', media: 'all'%>
-<%= javascript_include_tag 'jquery-1.11.2.min' %>
+		<%= javascript_include_tag 'jquery-1.11.2.min' %>
 		<%= javascript_include_tag 'bootstrap.min' %>
 		<%= javascript_include_tag 'bootstrap-select.min' %>
 
@@ -62,20 +62,18 @@
 				<a href="#"><img src="images/profilepicture.png" alt="..." class="img-circle profile-picture"> Michael Jackson</a>
 				</li> -->
 
-				<li>
-					<%= link_to  controller: "/static_pages", action: "home" do %>
-					<i class="icon-getgo_symbol"></i>Home<% end %>
-				</li>
+				
 				<% if user_signed_in? %>
 
-				<li>
+				<li class="active">
 					<a href="#"><i class="icon-roadmap-icon"></i>Roadmap</a>
 				</li>
 				<li>
 					<a href="#"><i class="icon-library-icon"></i>Library</a>
 				</li>
 				<li>
-					<a href="#"><i class="icon-settlebuddy-icon"></i>Settle buddy</a>
+					<%= link_to  controller: "/search", action: "settlebuddies" do %>
+					<i class="icon-settlebuddy-icon"></i>Settle Buddy<% end %>
 				</li>
 				<li>
 					<a href="#"><i class="icon-forum-icon"></i>Forum</a>
@@ -118,7 +116,8 @@
 						<a href="#"><i class="fa fa-envelope"></i></a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-bell"></i></a>
+						<%num = Request.where(settle_buddy_id: current_user.id, status:1).size%>
+						<a href="/search/requests_to_settle"><i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
 					</li>
 					<% else %>
 					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
@@ -136,7 +135,6 @@
 			<!-- #### GETGO CONTENT WRAPPER #### -->
 			<div class="getgo-content">
 				<div class="container-fluid">
-					
 
 					<!-- Roadmap items (nav tabs) href and aria-controls attributes hold the target ID -->
 					<nav class="roadmap-scroll" role="tabpanel">
@@ -269,24 +267,25 @@
 													</dd>
 												</dl>
 												<p></p>
-<!-- Roadmap comment -->
-													
+												<!-- Roadmap comment -->
+
 											</div>
 										</div>
 										<div class="roadmap-comment">
-														<div class="comments-container"></div>
-														<a href="#" class="add-comment-btn">Add personal comment...</a>
-														<div class="add-comment">
-															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
-															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
-																Save
-															</button>
-															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
-																Cancel
-															</button>
-														</div>
-													</div>
-													<br><br>
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
 									</div>
 
 									<!-- ACCORDION -->
@@ -367,7 +366,6 @@
 
 													6. Send your file number (Ex. IN60XXXX) to the assigned Campus France office to get your file reviewed and to request an appointment for the academic interview.
 
-													
 												</div>
 											</div>
 										</div>
@@ -472,7 +470,7 @@
 		<%= javascript_include_tag 'bootstrap-switch' %>
 		<%= javascript_include_tag 'toolbar' %>
 		<%= javascript_include_tag 'starrr' %>
-				<%= javascript_include_tag 'jquery.matchHeight' %>
+		<%= javascript_include_tag 'jquery.matchHeight' %>
 
 		<%= javascript_include_tag 'getgo' %>
 

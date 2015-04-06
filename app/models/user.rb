@@ -43,4 +43,5 @@ class User < ActiveRecord::Base
     end
   end
   has_one :roadmap
+  has_one :settlebuddy_support
 end

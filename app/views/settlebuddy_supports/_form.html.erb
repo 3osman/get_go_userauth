@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-md-6 col-sm-12">
+		<div class="panel panel-default">
+			<div class="panel-body profile-details">
+
+				<%= form_for(@settlebuddy_support) do |f| %>
+				<% if @settlebuddy_support.errors.any? %>
+				<div id="error_explanation">
+					<h2><%= pluralize(@settlebuddy_support.errors.count, "error") %> prohibited this settlebuddy_support from being saved:</h2>
+
+					<ul>
+						<% @settlebuddy_support.errors.full_messages.each do |message| %>
+						<li>
+							<%= message %>
+						</li>
+						<% end %>
+					</ul>
+				</div>
+				<% end %>
+				<div class="text-left">
+					<h4>Which of those procedures are you able to help?</h4>
+				</div>
+				<div class="text-left">
+					<b> Bank <em> (Opening a bank account and documents required)</em> </b><span class="pull-right"> <%= f.check_box :bank,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<br>
+				<div class="text-left">
+					<b> Visa<em> (Helping with applying for the visa) </em></b><span class="pull-right"> <%= f.check_box :visa,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<br>
+				<div class="text-left">
+					<b> Housing<em> (Finding accommodation and helping with prices)</em></b><span class="pull-right"> <%= f.check_box :housing,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<br>
+				<div class="text-left">
+					<b> Transport<em> (Transportation cards and student discounts)</em></b><span class="pull-right"> <%= f.check_box :public_transport,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<br>
+				<div class="text-left">
+					<b> Housing Allowance<em> (Government housing support if available) </em></b><span class="pull-right"> <%= f.check_box :caf,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+				<br>
+
+				<div class="text-left">
+					<b> Telecommunication<em> (Registering to a mobile operator) </em></b><span class="pull-right"> <%= f.check_box :telecommunication,style:"width: 20px; height: 20px;"%> </span>
+				</div>
+
+				<div class="input-icon">
+					<%= f.button "Save changes", :submit => "", class: "btn btn-block btn-sm btn-primary btn-embossed" %>
+					<% end %>
+				</div>
+				<%= link_to 'Back', "/users/edit" %>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+

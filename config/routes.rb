@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :settlebuddy_supports
+
+  resources :requests
+
   resources :links
 
   resources :document_comments
@@ -18,15 +22,21 @@ Rails.application.routes.draw do
   resources :roadmaps
 
   get 'static_pages/home'
-  
+
   root 'static_pages#home'
+get 'search/settlebuddies'
+
+get 'search/request_settle'
+get 'search/requests_to_settle'
+get 'search/settle_request'
+
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", sessions: "users/sessions", registrations: 'users/registrations'}
   devise_scope :user do
-  get "/logout" => "users/sessions#destroy"
-end
-match '/contact_forms',     to: 'contact_forms#new',             via: 'get'
-resources "contact_forms", only: [:new, :create]
+    get "/logout" => "users/sessions#destroy"
+  end
+  match '/contact_forms',     to: 'contact_forms#new',             via: 'get'
+  resources "contact_forms", only: [:new, :create]
 
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".

@@ -2,6 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_filter :configure_sign_up_params, only: [:create]
   before_filter :configure_account_update_params, only: [:update]
   before_filter :configure_permitted_parameters
+  skip_before_filter :require_no_authentication, only: :create
 
   # GET /resource/sign_up
   # def new
@@ -9,9 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+ def create
+    super
+    ss = SettlebuddySupport.new(user_id: resource.id)
+    ss.save
+ end
 
   # GET /resource/edit
   # def edit
@@ -38,20 +41,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   protected
-  
-
   # You can put the params you want to permit in the empty array.
   def configure_sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
   end
 
   # You can put the params you want to permit in the empty array.
   def configure_account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password)
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password,:name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :country, :city_of_studies, :country_of_origin, :duration,:birthdate, :settlebuddy)
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :city_of_studies, :country_of_origin, :duration,:birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
+
   end
 # The path used after sign up.
 # def after_sign_up_path_for(resource)

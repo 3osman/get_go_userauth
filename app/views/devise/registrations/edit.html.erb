@@ -33,6 +33,8 @@
 				<div class="text-left">
 					Settlebuddy <span class="pull-right"> <%= f.check_box :settlebuddy,style:"width: 20px; height: 20px;"%> </span>
 				</div>
+
+				<a href="/settlebuddy_supports/<%= current_user.settlebuddy_support.id%>/edit"> Configure </a>
 				<h5 style="margin-top: 30px">Personal details:</h5>
 
 				<div class="input-icon">
@@ -61,31 +63,29 @@
 
 				</div>
 				<div class="input-icon">
-						<%= f.select :country_of_origin, options_for_select([ "Country of Origin","Europe", "Non-Europe" ],selected:current_user.country_of_origin, disabled: "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+					<%= f.select :country_of_origin, options_for_select([ "Country of Origin","Europe", "Non-Europe" ],selected:current_user.country_of_origin, disabled: "Country of Origin"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
 
-					</div>
-					<div class="input-icon">
+				</div>
+				<div class="input-icon">
 
-						<%= f.select :city_of_studies, options_for_select([ "City of Studies","Paris", "London","Berlin","Amsterdam" ],selected:current_user.city_of_studies, disabled: "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
-					</div>
-					<div class="input-icon">
+					<%= f.select :city_of_studies, options_for_select([ "City of Studies","Paris", "London","Berlin","Amsterdam" ],selected:current_user.city_of_studies, disabled: "City of Studies"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+				</div>
+				<div class="input-icon">
 
-						<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:current_user.duration, disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
-					</div>
-
+					<%= f.select :duration, options_for_select([ "Duration of Stay","Less than 6 months", "More than 6 months" ],selected:current_user.duration, disabled: "Duration of Stay"),{}, {class:"selectpicker", style: "margin-bottom: 10px;"} %>
+				</div>
 
 				<div class="input-icon">
 					<%= f.button "Save changes", :submit => "", class: "btn btn-block btn-sm btn-primary btn-embossed" %>
 					<br>
 					<% end %>
 				</div>
-					<div class="input-icon">
+				<div class="input-icon">
 
-						<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-block btn-sm btn-danger btn-embossed" %>
-						<br>
-						<%= link_to "Back", :back, class:"pull-right" %>
-					</div>
-
+					<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-block btn-sm btn-danger btn-embossed" %>
+					<br>
+					<%= link_to "Back", :back, class:"pull-right" %>
+				</div>
 
 			</div>
 		</div>

@@ -43,6 +43,7 @@ Rails.application.configure do
   config.assets.enabled = true
   config.assets.paths << Rails.root.join('/app/assets/fonts')
   config.assets.paths << Rails.root.join('/app/assets/icomoon')
+  config.assets.paths << Rails.root.join('/app/assets/files')
 
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
