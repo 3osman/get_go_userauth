@@ -1,2 +1,334 @@
-<h1>Home Page</h1>
-<p>To fill</p>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The single source of all the neccessary information to settle down abroad for international student.">
+    <meta name="author" content="teamgetgo">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://www.getgoabroad.com/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.getgoabroad.com/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.getgoabroad.com/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.getgoabroad.com/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="http://www.getgoabroad.com/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.getgoabroad.com/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.getgoabroad.com/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.getgoabroad.com/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="Getgo"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="http://www.getgoabroad.com/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="http://www.getgoabroad.com/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="http://www.getgoabroad.com/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="http://www.getgoabroad.com/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
+
+    <title>getgo</title>
+
+    
+
+<%= javascript_include_tag 'jquery-1.11.2.min.js' %>
+<%= javascript_include_tag 'bootstrap.min.js' %>
+
+<%= javascript_include_tag 'jquery.easing.min' %>
+<%= javascript_include_tag 'classie' %>
+<%= javascript_include_tag 'cbpAnimatedHeader' %>
+<%= javascript_include_tag 'agency' %>
+<%= javascript_include_tag 'jqBootstrapValidation' %>
+<%= javascript_include_tag 'contact_me' %>
+<%= javascript_include_tag 'agency' %>
+<%= stylesheet_link_tag    'bootstrap.min', media: 'all'%>
+<%= stylesheet_link_tag    'drunken-parrot', media: 'all'%>
+<%= stylesheet_link_tag    'style', media: 'all'%>
+
+<%= stylesheet_link_tag    'homepage', media: 'all'%>
+<%= stylesheet_link_tag    'font-awesome.min.css', media: 'all'%>
+		<%= csrf_meta_tags %>
+
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll navbar-getgo-logo" href="#page-top"><i class="icon-getgo_symbol"></i></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#getgo">What is getgo?</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#features">Features</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#partners">For partners</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in logo-big"><i class="icon-getgo_logo"></i></div>
+                <div class="tagline">
+                    <h3>Hassle-free experience for international students <br /><small>International Students Community in Paris</small></h3>
+                </div>    
+                <a class="btn btn-success btn-embossed">Sign up for the beta version</a>
+
+               
+            </div>
+        </div>
+    </header>
+
+    <!-- GETGO Section -->
+    <section id="getgo">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading">What is getgo?</h1>
+                </div>
+            </div>
+            <div class="row text-center">
+                
+                <div class="col-md-6">
+                    <p class="text-muted large">An online platform representing a <strong>single source</strong> of all the necessary information for settle down in Paris 
+                    as an <strong>international student</strong>  <br />...on your smartphone, tablet and desktop.</p>
+                    <h5 class="text-left">Find information about:</h5>
+                    <ul class="list-unstyled text-left list-content">
+                        <li><i class="fa fa-circle bank-tag"></i>Bank</li>
+                        <li><i class="fa fa-circle visa-tag"></i>Visa</li>
+                        <li><i class="fa fa-circle housing-tag"></i>Housing</li>
+                        <li><i class="fa fa-circle public-transport-tag"></i>Public transport</li>
+                        <li><i class="fa fa-circle housing-allowance-tag"></i>Hosuing allowance (CAF)</li>
+                        <li><i class="fa fa-circle telecommunication-tag"></i>Telecommunication</li>
+                        <li><i class="fa fa-circle health-insurance-tag"></i>Health insurance</li>
+                        <li><i class="fa fa-circle residence-permit-tag"></i>Residence permit</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img src="/assets/devices.png" class="img-responsive" alt="flat-mockup-template">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading">Features and benefits</h1>
+                </div>
+            </div>
+            <!-- First row -->
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_save_time.png">
+                    <h4 class="service-heading">Save time</h4>
+                    <p class="text-muted">Stop spending hours searching, gathering and organizing information from 
+                            various sources. With getgo you can find everything at one place.</p>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_reminders.png">
+                    <h4 class="service-heading">Reminders</h4>
+                    <p class="text-muted">Too many things to keep in mind? Let getgo remind you about the most important 
+                            upcoming deadlines. All you have to do is just easily sync your roadmap with your calendar.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_up_to_date.png">
+                    <h4 class="service-heading">Up-to-date</h4>
+                    <p class="text-muted">We ensure that the information in our application is always up-to-date thanks to our community and partners.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_reliable.png">
+                    <h4 class="service-heading">Reliable</h4>
+                    <p class="text-muted">Our verification system makes sure that you get the most reliable information from the various sources used.</p>
+                </div>
+                
+            </div>
+            <!-- Second row -->
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_roadmap.png">
+                    <h4 class="service-heading">Roadmap</h4>
+                    <p class="text-muted">Based on your data, getgo will automatically generate a personal roadmap with all relevant 
+                            formalities that international students, like you should complete.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_step_by_step.png">
+                    <h4 class="service-heading">Step-by-step</h4>
+                    <p class="text-muted">Each line of action in getgo has an easy to follow, step-by-step structure. Forget about long 
+                            articles… Short and concise to get it done as soon as possible.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_settle_buddy.png">
+                    <h4 class="service-heading">Settle-buddy</h4>
+                    <p class="text-muted">Did you get stuck? Don’t know what to do? Ask someone who has done the same thing before. 
+                            The settle buddy feature allows you to connect (former) students and ask help.</p>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <img src="/assets/icon_community.png">
+                    <h4 class="service-heading">Community</h4>
+                    <p class="text-muted">Be a member of the biggest community of international students. Share your experience and connect with fellow students!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="students">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading">
+                    <span class="student-number">50.000+</span> international students are in Paris <br /> 
+                    <small>Students from 70+ different countries are facing the same problems every year...</small>
+
+                    </h1>
+                    <img src="/assets/world-map.png" class="img-responsive" alt="student-world-map">
+                </div>
+            </div>
+            <!-- Map image goes here -->
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section id="partners">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-12 text-center">
+                    <h1 class="section-heading">Partner with us</h1>
+                    <h3 class="section-subheading">Do you have an international office dedicated to help new foreign students settle down? <br /> Save time for your international officers and coordinators by guiding international students directly to getgo.</h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-4">
+                        <h1 class="circle-bg">1</h1>
+                        <img src="/assets/handshake.png" alt="analytics-icon">
+                        <div class="caption">
+                            <h3>Partner with us</h3>
+                            <p>Contact us by using the form below.</p>
+                        </div>
+                </div><!--/col-sm-6-->
+
+                <div class="col-sm-4">
+                        <h1 class="circle-bg">2</h1>
+                        <img src="/assets/spreadtheword.png" alt="analytics-icon">
+                        <div class="caption">
+                            <h3>Spread the word</h3>
+                            <p>Let us help your international students by featuring getgo on your website.</p>
+                        </div>
+                </div><!--/col-sm-6-->
+
+                <div class="col-sm-4">
+                        <h1 class="circle-bg">3</h1>
+                        <img src="/assets/hasslefree.png" alt="analytics-icon">
+                        <div class="caption">
+                            <h3>Increase reputation</h3>
+                            <p>by following successfully the previous two steps.</p>
+                        </div>
+                </div><!--/col-sm-6-->
+            </div><!--/section -->
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Contact Us</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <form name="sentMessage" id="contactForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control validated" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone (optional" id="phone" data-validation-required-message="Please enter your phone number.">
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <div class="text-right">
+                                <button type="submit" class="btn btn-success btn-embossed">Send message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <p class="getgo-footer"><i class="icon-getgo_logo"></i></p>
+                    <p>Copyright &copy; getgoabroad.com 2015</p>
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://www.facebook.com/getgoabroad"><i class="fa fa-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+</body>
+
+</html>
+
+

@@ -17,3 +17,286 @@
 
 <%= link_to 'Edit', edit_roadmap_path(@roadmap) %> |
 <%= link_to 'Back', roadmaps_path %>
+
+
+<nav class="roadmap-scroll" role="tabpanel">
+    <ul class="nav nav-roadmap" role="tablist">
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="welcome">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#welcome" aria-controls="welcome" role="tab" data-toggle="tab"><i class="icon-getgo_symbol"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="housing active completed">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#housing" aria-controls="housing" role="tab" data-toggle="tab"><i class="icon-housing"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="housing-benefit">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#housing-benefit" aria-controls="housing-benefit" role="tab" data-toggle="tab"><i class="icon-housing-benefit"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="public-transportation">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#public-transportation" aria-controls="public-transportation" role="tab" data-toggle="tab"><i class="icon-public-transport"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="health-insurance">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#health-insurance" aria-controls="health-insurance" role="tab" data-toggle="tab"><i class="icon-health-insurance"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="visa">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#visa" aria-controls="visa" role="tab" data-toggle="tab"><i class="icon-visa"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="telecommunication">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#telecommunication" aria-controls="telecommunication" role="tab" data-toggle="tab"><i class="icon-telecommunication"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="bank">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#bank" aria-controls="bank" role="tab" data-toggle="tab"><i class="icon-bank"></i></a>
+                </div>
+            </div>
+        </li>
+        <!-- roadmap nav rounded item -->
+        <li role="presentation" class="residence-permit">
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="#residence-permit" aria-controls="residence-permit" role="tab" data-toggle="tab"><i class="icon-residence-permit"></i></a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</nav>
+
+<!-- Roadmap item contents (Tab panes) Inside a basic panel: tabpanels with category IDs -->
+<div class="panel panel-default roadmap-content">
+<div class="panel-body">
+
+<div class="tab-content">
+        <!-- Roadmap tab-pane item -->
+        <div role="tabpanel" class="tab-pane fade active in" id="housing">
+            <div class="roadmap-item-title">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <h3>Non- EU Visa Procedure </h3>
+                    </div>
+                    <div class="col-xs-2">
+                        <a id="vertical-bottom-toolbar" class="icon-button pull-right">
+                            <i class="fa fa-cog"></i>
+                        </a>
+                        <div id="user-toolbar-options" style="display: none">
+                            <a href="#fakeLink"><i class="fa fa-user"></i></a>
+                            <a href="#fakeLink"><i class="fa fa-star"></i></a>
+                            <a href="#fakeLink"><i class="fa fa-edit"></i></a>
+                            <a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="roadmap-item-description">
+                <div class="row">
+                    <div class="col-sm-6">
+                    <dl>
+                          <dt>Description</dt>
+                          <dd>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</dd>
+                      </dl>
+                    </div>
+                    <div class="col-sm-6">
+                        <dl>
+                          <dt>Applying via Campus France</dt>
+                          <dd><a href="www.campusfrance.org/en">Campus France website</a></dd>
+                      </dl>
+                      <dl>
+                          <dt>When to Apply</dt>
+                          <dd>The duration of the entire process varies from <strong>two weeks to a month</strong> depending on the time of year. Applications earlier than three months before the scheduled date of departure will not be accepted.</dd>
+                      </dl>
+                    <p>  </p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCORDION -->
+            <div class="panel-group-roadmap" id="accordion">
+
+                <!-- Panel roadmap -->
+                <div class="panel panel-roadmap" id="panel0">
+                    <div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+                        <div class="panel-title">
+                            Documents needed
+                            <div class="panel-title-btn"><a href="#">Done</a></div>
+                        </div>
+                    </div>
+                <div id="documents" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label class="checkbox" for="checkbox1">
+                                  <input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+                                  Curriculum vitae /Resume
+                              </label>
+                              <label class="checkbox" for="checkbox2">
+                                  <input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" />
+                                  Passport size photographs
+                              </label>
+                              <label class="checkbox" for="checkbox3">
+                                  <input type="checkbox" value="" id="checkbox3" data-toggle="checkbox" />
+                                  Academic records (Marksheets and Certificates)
+                              </label>
+                          </div>
+                          <div class="col-sm-6">
+                            <label class="checkbox" for="checkbox4">
+                              <input type="checkbox" value="" id="checkbox5" data-toggle="checkbox" />
+                              Acceptance / admission letter from the French Institution
+                          </label>
+                          <label class="checkbox" for="checkbox5">
+                              <input type="checkbox" value="" id="checkbox5" data-toggle="checkbox" />
+                              Experience Letter (if applicable)
+                          </label>
+                      </div>
+                  </div>
+                  <!-- Roadmap comment -->
+                  <div class="roadmap-comment">
+                    <div class="comments-container"></div>
+                    <a href="#" class="add-comment-btn">Add personal comment...</a> 
+                    <div class="add-comment">
+                        <textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+                        <button type="button" class="btn btn-primary btn-sm pull-right comment-save">Save</button>
+                        <button type="button" class="btn btn-info btn-sm pull-right comment-cancel">Cancel</button>
+                    </div>
+                </div>
+                <!-- /roadmap comment -->
+            </div>
+        </div>
+    </div>
+
+            <!-- Panel roadmap -->
+            <div class="panel panel-roadmap" id="panel1">
+                <div class="panel-heading" data-toggle="collapse" data-target="#step1">
+                        <div class="panel-title done">
+                            Campus France - Online registration
+                            <div class="panel-title-btn"><a href="#">Done</a></div>
+                        </div>
+                    </div>
+                <div id="step1" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                         1. Log on to the Campus France website of your country and create an account on the website.
+ 
+2. Fill up the account creation forms as per the mentioned requirements. Once you register you will receive a unique Campus France Registration Number (ex. IN60XXXX) along with a userid and password. You would need this registration number for for all further reference with regard to your application.
+ 
+3. To access your account, go to Campus France website. In the Register online box, click on ‘Enter Your Account’. Log in using the given Username (id) / Password.
+ 
+4. Click on the Campus France form under ‘My File’ and fill the academic records, language skills and CV+SOP sections. Upload documents . Ensure that all four fields in the Validation tab indicate “Complete” but DO NOT CLICK ON “SAVE” at the bottom of this page.
+5. Ensure that the Campus France fees is paid as per instructions mentioned on the website. 
+
+6. Send your file number (Ex. IN60XXXX) to the assigned Campus France office to get your file reviewed and to request an appointment for the academic interview.
+
+
+                        <!-- Roadmap comment -->
+                        <div class="roadmap-comment">
+                          <div class="comments-container"></div>
+                          <a href="#" class="add-comment-btn">Add personal comment...</a> 
+                          <div class="add-comment">
+                              <textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+                              <button type="button" class="btn btn-primary btn-sm pull-right comment-save">Save</button>
+                              <button type="button" class="btn btn-info btn-sm pull-right comment-cancel">Cancel</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+    <!-- Panel roadmap -->
+    <div class="panel panel-roadmap" id="panel2">
+      <div class="panel-heading" data-toggle="collapse" data-target="#step2">
+        <div class="panel-title">
+        2. Step
+            <div class="panel-title-btn"><a href="#">Done</a></div>
+        </div>
+    </div>
+      <div id="step2" class="panel-collapse collapse in">
+          <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+      </div>
+    </div>
+
+    <!-- Panel roadmap -->
+    <div class="panel panel-roadmap" id="panel3">
+        <div class="panel-heading" data-toggle="collapse" data-target="#step3">
+            <div class="panel-title">
+                3. Step
+                <div class="panel-title-btn"><a href="#">Done</a></div>
+            </div>
+        </div>
+        <div id="step3" class="panel-collapse collapse in">
+            <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Roadmap tab-pane item -->    
+<div role="tabpanel" class="tab-pane fade" id="welcome">
+    <h3>Welcome to your personal Roadmap</h3>
+    <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="housing-benefit">
+    <h3>Item 3</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="health-insurance">
+    <h3>Custom item</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="visa">
+    <h3>Custom item</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="telecommunication">
+    <h3>Custom item</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="bank">
+    <h3>Custom item</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="residence-permit">
+    <h3>Custom item</h3>
+</div>
+<!-- Roadmap tab-pane item -->
+<div role="tabpanel" class="tab-pane fade" id="public-transportation">
+    <h3>Custom item</h3>
+</div>
+
+</div> <!-- /tab content -->
+</div> <!-- /panel body -->
+</div> <!-- /roadmap content -->
+
