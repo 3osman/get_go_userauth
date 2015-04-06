@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @document_comment.comment %>
+</p>
+
+<p>
+  <strong>Task:</strong>
+  <%= @document_comment.task_id %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @document_comment.rating %>
+</p>
+
+<%= link_to 'Edit', edit_document_comment_path(@document_comment) %> |
+<%= link_to 'Back', document_comments_path %>

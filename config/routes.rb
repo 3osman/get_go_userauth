@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :document_comments
+
   resources :conversations
 
   resources :messages

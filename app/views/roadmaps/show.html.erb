@@ -37,6 +37,10 @@
 		<%= stylesheet_link_tag    'bootstrap-select.min', media: 'all'%>
 
 		<%= stylesheet_link_tag    'getgo', media: 'all'%>
+<%= javascript_include_tag 'jquery-1.11.2.min' %>
+		<%= javascript_include_tag 'bootstrap.min' %>
+		<%= javascript_include_tag 'bootstrap-select.min' %>
+
 		<%= csrf_meta_tags %>
 
 		<!-- Just for debugging purposes. Don't actually copy this line! -->
@@ -469,16 +473,12 @@
 		<!-- Bootstrap core JavaScript
 		================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->
-<%= javascript_include_tag 'jquery-1.11.2.min' %>
-		<%= javascript_include_tag 'bootstrap.min' %>
-
 		<%= javascript_include_tag 'jasny-bootstrap' %>
 		<%= javascript_include_tag 'checkbox' %>
 		<%= javascript_include_tag 'radio' %>
 		<%= javascript_include_tag 'bootstrap-switch' %>
 		<%= javascript_include_tag 'toolbar' %>
 		<%= javascript_include_tag 'starrr' %>
-		<%= javascript_include_tag 'bootstrap-select.min' %>
 				<%= javascript_include_tag 'jquery.matchHeight' %>
 
 		<%= javascript_include_tag 'getgo' %>
