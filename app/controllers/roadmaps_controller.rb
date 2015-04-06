@@ -10,6 +10,8 @@ class RoadmapsController < ApplicationController
   # GET /roadmaps/1
   # GET /roadmaps/1.json
   def show
+        render :layout => false
+
   end
 
   # GET /roadmaps/new

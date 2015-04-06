@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>GetGoAuth</title>
+		<title>getgo</title>
 		<%= stylesheet_link_tag    'application', media: 'all'%>
 		<%= javascript_include_tag 'application'%>
 		<%= csrf_meta_tags %>
@@ -31,7 +31,7 @@
 		<meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
 
 		<title>Sign in</title>
-	   <%= yield :head %>
+		<%= yield :head %>
 
 	</head>
 	<body data-spy="scroll" data-target="#sidenav" data-offset="100">
@@ -44,8 +44,11 @@
 				</li> -->
 
 				<li>
-					<a href="#"><i class="icon-getgo_symbol"></i>Home</a>
+					<%= link_to  controller: "/static_pages", action: "home" do %>
+					<i class="icon-getgo_symbol"></i>Home<% end %>
 				</li>
+									<% if user_signed_in? %>
+
 				<li>
 					<a href="#"><i class="icon-roadmap-icon"></i>Roadmap</a>
 				</li>
@@ -58,6 +61,7 @@
 				<li>
 					<a href="#"><i class="icon-forum-icon"></i>Forum</a>
 				</li>
+				<%end%>
 				<!-- <li><a href="#"><i class="icon-search-icon"></i>Search</a></li> -->
 				<!-- <li><a href="#"><i class="icon-help-icon"></i>Help</a></li> -->
 				<!-- <li><a href="#"><i class="icon-settings-icon"></i>Settings</a></li> -->
@@ -71,34 +75,39 @@
 					Getgo
 				</p>
 				<!-- USER INFO GOES HERE, welcome message, profil picture, messages/chat icon, bell icon for notification -->
-		<ul class="nav navbar-nav navbar-right getgo-top-nav">
-										<% if user_signed_in? %>
+				<ul class="nav navbar-nav navbar-right getgo-top-nav">
+					<% if user_signed_in? %>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                <span class="welcome-user">Welcome, </span> 
-                <span class="user-name"><%= current_user.name %></span> 
-                <%= image_tag current_user.gravatar_url, class:"img-circle profile-picture" %>
-              </a>
-              <ul class="dropdown-menu" role="menu">
-                <div class="arrow top"></div>
-                <li class="dropdown-header"><%= current_user.name %></li>
-                <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> </li>
-                 <li class="divider"></li>
-                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-              </ul>
-            </li>
-            
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="welcome-user">Welcome, </span> <span class="user-name"><%= current_user.name %></span> <%= image_tag current_user.gravatar_url, class:"img-circle profile-picture" %> </a>
+						<ul class="dropdown-menu" role="menu">
+							<div class="arrow top"></div>
+							<li class="dropdown-header">
+								<%= current_user.name %>
+							</li>
+							<li>
+								<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+							</li>
+						</ul>
+					</li>
 
-            <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-            <li><a href="#"><i class="fa fa-bell"></i></a></li>
-           <% else %>
+					<li>
+						<a href="#"><i class="fa fa-envelope"></i></a>
+					</li>
+					<li>
+						<a href="#"><i class="fa fa-bell"></i></a>
+					</li>
+					<% else %>
 					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
 					<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-					
-            <%end%>
-          </ul>
-				
+
+					<%end%>
+				</ul>
+
 				<button type="button" class="navbar-toggle hamburger" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
 					<span class="icon-bar top-bar"></span>
 					<span class="icon-bar middle-bar"></span>
