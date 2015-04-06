@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406034134) do
+ActiveRecord::Schema.define(version: 20150406060433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(version: 20150406034134) do
     t.text     "body"
     t.integer  "rating"
     t.integer  "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contact_forms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -47,6 +52,14 @@ ActiveRecord::Schema.define(version: 20150406034134) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.boolean  "done"
+  end
+
+  create_table "links", force: :cascade do |t|
+    t.integer  "task_id"
+    t.string   "link_description"
+    t.string   "link_src"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -80,8 +93,9 @@ ActiveRecord::Schema.define(version: 20150406034134) do
     t.date     "deadline"
     t.string   "name"
     t.integer  "roadmap_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "application_time"
   end
 
   create_table "users", force: :cascade do |t|

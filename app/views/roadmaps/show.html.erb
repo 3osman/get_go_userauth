@@ -109,7 +109,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+								<%= link_to "Logout", "/logout", :class => 'navbar-link'  %>
 							</li>
 						</ul>
 					</li>
@@ -136,16 +136,7 @@
 			<!-- #### GETGO CONTENT WRAPPER #### -->
 			<div class="getgo-content">
 				<div class="container-fluid">
-					<% if notice %>
-					<p class="alert alert-success">
-						<%= notice %>
-					</p>
-					<% end %>
-					<% if alert %>
-					<p class="alert alert-danger">
-						<%= alert %>
-					</p>
-					<% end %>
+					
 
 					<!-- Roadmap items (nav tabs) href and aria-controls attributes hold the target ID -->
 					<nav class="roadmap-scroll" role="tabpanel">
@@ -263,7 +254,7 @@
 											<div class="col-sm-6">
 												<dl>
 													<dt>
-														Applying via Campus France
+														Helpful Links
 													</dt>
 													<dd>
 														<a href="www.campusfrance.org/en">Campus France website</a>
@@ -278,9 +269,24 @@
 													</dd>
 												</dl>
 												<p></p>
-
+<!-- Roadmap comment -->
+													
 											</div>
 										</div>
+										<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<br><br>
 									</div>
 
 									<!-- ACCORDION -->
@@ -361,20 +367,7 @@
 
 													6. Send your file number (Ex. IN60XXXX) to the assigned Campus France office to get your file reviewed and to request an appointment for the academic interview.
 
-													<!-- Roadmap comment -->
-													<div class="roadmap-comment">
-														<div class="comments-container"></div>
-														<a href="#" class="add-comment-btn">Add personal comment...</a>
-														<div class="add-comment">
-															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
-															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
-																Save
-															</button>
-															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
-																Cancel
-															</button>
-														</div>
-													</div>
+													
 												</div>
 											</div>
 										</div>

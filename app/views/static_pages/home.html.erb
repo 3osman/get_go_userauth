@@ -89,6 +89,11 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+                    <li>
+                    	               <%= link_to 'Login', new_user_session_path%>
+
+                    	
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -305,6 +310,16 @@
                             </div>
                         </div>
                     </form>
+                    <% if notice %>
+					<p class="alert alert-success">
+						<%= notice %>
+					</p>
+					<% end %>
+					<% if alert %>
+					<p class="alert alert-danger">
+						<%= alert %>
+					</p>
+					<% end %>
                 </div>
             </div>
         </div>

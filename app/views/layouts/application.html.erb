@@ -43,11 +43,12 @@
 				<a href="#"><img src="images/profilepicture.png" alt="..." class="img-circle profile-picture"> Michael Jackson</a>
 				</li> -->
 
+				<% if !(user_signed_in?) %>
 				<li>
 					<%= link_to  controller: "/static_pages", action: "home" do %>
 					<i class="icon-getgo_symbol"></i>Home<% end %>
 				</li>
-									<% if user_signed_in? %>
+				<%else%>
 
 				<li>
 					<a href="#"><i class="icon-roadmap-icon"></i>Roadmap</a>
@@ -90,7 +91,7 @@
 							</li>
 							<li class="divider"></li>
 							<li>
-								<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+								<%= link_to "Logout", "/logout",method: :delete, class: 'navbar-link'  %>
 							</li>
 						</ul>
 					</li>
