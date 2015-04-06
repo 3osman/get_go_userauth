@@ -101,8 +101,9 @@
 						<a href="#"><i class="fa fa-envelope"></i></a>
 					</li>
 					<li>
-						<%num = Request.where(settle_buddy_id: current_user.id, status:1).size%>
-						<a href="/search/requests_to_settle"><i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
+						<% num = Request.where("(settle_buddy_id=? AND s_view_status=?) OR (client_id=? AND c_view_status=?)", current_user.id, false,current_user.id,false).size%>
+						<%if current_user.settlebuddy?%>
+						<a href="/search/requests_to_settle"> <%else%> <a href="/search/settlebuddies"> <%end%> <i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
 					</li>
 					<% else %>
 					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |

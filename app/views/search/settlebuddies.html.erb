@@ -115,8 +115,9 @@
 						<a href="#"><i class="fa fa-envelope"></i></a>
 					</li>
 					<li>
-						<%num = Request.where(settle_buddy_id: current_user.id, status:1).size%>
-						<a href="/search/requests_to_settle"><i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
+						<% num = Request.where("(settle_buddy_id=? AND s_view_status=?) OR (client_id=? AND c_view_status=?)", current_user.id, false,current_user.id,false).size%>
+						<%if current_user.settlebuddy?%>
+						<a href="/search/requests_to_settle"> <%else%> <a href="/search/settlebuddies"> <%end%> <i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
 					</li>
 					<% else %>
 					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
@@ -134,6 +135,16 @@
 			<!-- #### GETGO CONTENT WRAPPER #### -->
 			<div class="getgo-content">
 				<div class="container-fluid">
+					<% if notice %>
+					<p class="alert alert-success">
+						<%= notice %>
+					</p>
+					<% end %>
+					<% if alert %>
+					<p class="alert alert-danger">
+						<%= alert %>
+					</p>
+					<% end %>
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="row library-search">
@@ -150,7 +161,7 @@
 
 					<!-- LIST OF Settle buddies -->
 					<div class="row">
-						<% User.where(settlebuddy: true).find_each do |user|%>
+						<% User.where("settlebuddy=? AND id<>?",true, current_user.id).find_each do |user|%>
 						<!-- Settle buddy item-->
 						<div class="col-md-4 col-sm-6">
 							<div class="tile tile-profile">
@@ -219,9 +230,11 @@
 									</ul>
 								</div>
 								<div class="request-button">
-									<%if (Request.where(settle_buddy_id: user.id, client_id: current_user.id).first.nil?) || Request.where(settle_buddy_id: user.id, client_id: current_user.id).first.status==0%>
+									<%request = Request.where(settle_buddy_id: user.id, client_id: current_user.id).first%>
+									
+									<%if (request.nil?) || request.status==0%>
 									<%= link_to 'Send Request', {:controller => "search", :action => "request_settle", :user_id => current_user.id, :settle_id => user.id  }, class:'btn btn-block btn-primary btn-embossed domi-test'%>
-									<%elsif Request.where(settle_buddy_id: user.id, client_id: current_user.id).first.status==1%>
+									<%elsif request.status==1%>
 									<a href="#" class="btn btn-block btn-warning btn-embossed domi-test">Pending</a>
 
 									<%else %>

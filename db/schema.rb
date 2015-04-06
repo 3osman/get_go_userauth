@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406073150) do
+ActiveRecord::Schema.define(version: 20150406171759) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,8 +73,10 @@ ActiveRecord::Schema.define(version: 20150406073150) do
     t.integer  "settle_buddy_id"
     t.integer  "client_id"
     t.integer  "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "s_view_status",   default: false
+    t.boolean  "c_view_status",   default: true
   end
 
   create_table "roadmaps", force: :cascade do |t|
