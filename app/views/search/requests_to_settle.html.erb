@@ -68,7 +68,7 @@
 					<a href="/"><i class="icon-roadmap-icon"></i>Roadmap</a>
 				</li>
 				<li>
-					<a href="#"><i class="icon-library-icon"></i>Library</a>
+					<%= link_to  controller: "/search", action: "library" do %><i class="icon-library-icon"></i>Library<%end%>
 				</li>
 				<li class ="active">
 					<%= link_to  controller: "/search", action: "settlebuddies" do %>

@@ -68,7 +68,7 @@
 					<a href="/"><i class="icon-roadmap-icon"></i>Roadmap</a>
 				</li>
 				<li>
-					<a href="#"><i class="icon-library-icon"></i>Library</a>
+					<%= link_to  controller: "/search", action: "library" do %><i class="icon-library-icon"></i>Library<%end%>
 				</li>
 				<li class ="active">
 					<%= link_to  controller: "/search", action: "settlebuddies" do %>
@@ -147,21 +147,42 @@
 					<% end %>
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<div class="row library-search">
-								<div class="col-sm-12">
+							<form accept-charset="UTF-8" action="/search/search_settle_buddy" data-remote="true" id="search-me" method="get">
 
-									<div class="input-icon">
-										<span class="fa-search fa search-icon"></span>
-										<input type="text" class="form-control" placeholder="Find your buddy... ">
+								<div class="row library-search">
+									<div class="col-sm-12">
+										<div class="input-icon">
+											<span class="fa-search fa search-icon"></span>
+											<input type="text" class="form-control" id="search_clause" name="search_clause" placeholder="Type here... ">
+										</div>
+
 									</div>
+
 								</div>
-							</div>
+
+									<div class="col-md-3 pull-right">
+
+										<div class="input-icon">
+											<button type="submit" class="btn btn-primary pull-right">
+												Search
+											</button>
+										</div>
+									</div>
+							</form>
+
 						</div>
 					</div>
 
 					<!-- LIST OF Settle buddies -->
 					<div class="row">
-						<% User.where("settlebuddy=? AND id<>?",true, current_user.id).find_each do |user|%>
+						<%if @search_result.nil?%>
+						<% users_b = User.where("settlebuddy=? AND id<>?",true, current_user.id).all%>
+						<%else%>
+
+						<% users_b = @search_result%>
+
+						<%end%>
+						<% users_b.each do |user|%>
 						<!-- Settle buddy item-->
 						<div class="col-md-4 col-sm-6">
 							<div class="tile tile-profile">
@@ -231,7 +252,7 @@
 								</div>
 								<div class="request-button">
 									<%request = Request.where(settle_buddy_id: user.id, client_id: current_user.id).first%>
-									
+
 									<%if (request.nil?) || request.status==0%>
 									<%= link_to 'Send Request', {:controller => "search", :action => "request_settle", :user_id => current_user.id, :settle_id => user.id  }, class:'btn btn-block btn-primary btn-embossed domi-test'%>
 									<%elsif request.status==1%>

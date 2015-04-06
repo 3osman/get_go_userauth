@@ -24,11 +24,14 @@ Rails.application.routes.draw do
   get 'static_pages/home'
 
   root 'static_pages#home'
-get 'search/settlebuddies'
+  get 'search/settlebuddies'
 
-get 'search/request_settle'
-get 'search/requests_to_settle'
-get 'search/settle_request'
+  get 'search/request_settle'
+  get 'search/requests_to_settle'
+  get 'search/settle_request'
+  get 'search/library'
+  get 'search/search_settle_buddy'
+    get 'search/search_library'
 
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", sessions: "users/sessions", registrations: 'users/registrations'}

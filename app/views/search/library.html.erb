@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="The single source of all the neccessary information to settle down abroad for international student.">
+		<meta name="author" content="teamgetgo">
+		<link rel="apple-touch-icon-precomposed" sizes="57x57" href="http://www.getgoabroad.com/apple-touch-icon-57x57.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://www.getgoabroad.com/apple-touch-icon-114x114.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://www.getgoabroad.com/apple-touch-icon-72x72.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://www.getgoabroad.com/apple-touch-icon-144x144.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="60x60" href="http://www.getgoabroad.com/apple-touch-icon-60x60.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="120x120" href="http://www.getgoabroad.com/apple-touch-icon-120x120.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="76x76" href="http://www.getgoabroad.com/apple-touch-icon-76x76.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="152x152" href="http://www.getgoabroad.com/apple-touch-icon-152x152.png" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-196x196.png" sizes="196x196" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-32x32.png" sizes="32x32" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-16x16.png" sizes="16x16" />
+		<link rel="icon" type="image/png" href="http://www.getgoabroad.com/favicon-128.png" sizes="128x128" />
+		<meta name="application-name" content="Getgo"/>
+		<meta name="msapplication-TileColor" content="#FFFFFF" />
+		<meta name="msapplication-TileImage" content="http://www.getgoabroad.com/mstile-144x144.png" />
+		<meta name="msapplication-square70x70logo" content="http://www.getgoabroad.com/mstile-70x70.png" />
+		<meta name="msapplication-square150x150logo" content="http://www.getgoabroad.com/mstile-150x150.png" />
+		<meta name="msapplication-wide310x150logo" content="http://www.getgoabroad.com/mstile-310x150.png" />
+		<meta name="msapplication-square310x310logo" content="http://www.getgoabroad.com/mstile-310x310.png" />
+
+		<title>Library</title>
+
+		<!-- Bootstrap core CSS -->
+
+		<%= stylesheet_link_tag    'bootstrap.min', media: 'all'%>
+		<%= stylesheet_link_tag    'jasny-bootstrap', media: 'all'%>
+		<%= stylesheet_link_tag    'font-awesome.min', media: 'all'%>
+
+		<%= stylesheet_link_tag    'drunken-parrot', media: 'all'%>
+		<%= stylesheet_link_tag    'style', media: 'all'%>
+		<%= stylesheet_link_tag    'bootstrap-select.min', media: 'all'%>
+
+		<%= stylesheet_link_tag    'getgo', media: 'all'%>
+		<%= javascript_include_tag 'jquery-1.11.2.min' %>
+		<%= javascript_include_tag 'bootstrap.min' %>
+		<%= javascript_include_tag 'bootstrap-select.min' %>
+
+		<%= csrf_meta_tags %>
+
+		<!-- Just for debugging purposes. Don't actually copy this line! -->
+		<!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body data-spy="scroll" data-target="#sidenav" data-offset="100">
+
+		<div class="navmenu navmenu-default navmenu-fixed-left">
+			<ul class="nav navmenu-nav getgo-menu">
+				<!-- The first row is dedicated to the user profile or Sign in / Sign up button, pick one -->
+				<!-- <li class="navmenu-account-info">
+				<a href="#"><img src="images/profilepicture.png" alt="..." class="img-circle profile-picture"> Michael Jackson</a>
+				</li> -->
+
+				<% if user_signed_in? %>
+
+				<li>
+					<a href="/"><i class="icon-roadmap-icon"></i>Roadmap</a>
+				</li>
+				<li class ="active">
+					<%= link_to  controller: "/search", action: "library" do %><i class="icon-library-icon"></i>Library<%end%>
+				</li>
+				<li>
+					<%= link_to  controller: "/search", action: "settlebuddies" do %>
+					<i class="icon-settlebuddy-icon"></i>Settle Buddy<% end %>
+				</li>
+				<li>
+					<a href="#"><i class="icon-forum-icon"></i>Forum</a>
+				</li>
+				<%end%>
+				<!-- <li><a href="#"><i class="icon-search-icon"></i>Search</a></li> -->
+				<!-- <li><a href="#"><i class="icon-help-icon"></i>Help</a></li> -->
+				<!-- <li><a href="#"><i class="icon-settings-icon"></i>Settings</a></li> -->
+			</ul>
+		</div>
+
+		<div class="canvas">
+			<div class="navbar navbar-default navbar-fixed-top">
+				<a class="navbar-getgo-logo" href="#"><i class="icon-getgo_symbol"></i></a>
+				<p class="navbar-page-title">
+					Getgo
+				</p>
+				<!-- USER INFO GOES HERE, welcome message, profil picture, messages/chat icon, bell icon for notification -->
+				<ul class="nav navbar-nav navbar-right getgo-top-nav">
+					<% if user_signed_in? %>
+
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="welcome-user">Welcome, </span> <span class="user-name"><%= current_user.name %></span> <%= image_tag current_user.gravatar_url, class:"img-circle profile-picture" %> </a>
+						<ul class="dropdown-menu" role="menu">
+							<div class="arrow top"></div>
+							<li class="dropdown-header">
+								<%= current_user.name %>
+							</li>
+							<li>
+								<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<%= link_to "Logout", "/logout", :class => 'navbar-link'  %>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="#"><i class="fa fa-envelope"></i></a>
+					</li>
+					<li>
+						<% num = Request.where("(settle_buddy_id=? AND s_view_status=?) OR (client_id=? AND c_view_status=?)", current_user.id, false,current_user.id,false).size%>
+						<%if current_user.settlebuddy?%>
+						<a href="/search/requests_to_settle"> <%else%> <a href="/search/settlebuddies"> <%end%> <i class="fa fa-bell"><%if num!=0 %><span class="label label-success label-as-badge"><%= num%></span><%end%></i></a>
+					</li>
+					<% else %>
+					<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
+					<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
+
+					<%end%>
+				</ul>
+
+				<button type="button" class="navbar-toggle hamburger" data-toggle="offcanvas" data-recalc="false" data-target=".navmenu" data-canvas=".canvas">
+					<span class="icon-bar top-bar"></span>
+					<span class="icon-bar middle-bar"></span>
+					<span class="icon-bar bottom-bar"></span>
+				</button>
+			</div>
+			<!-- #### GETGO CONTENT WRAPPER #### -->
+			<div class="getgo-content">
+				<div class="container-fluid">
+
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<form accept-charset="UTF-8" action="/search/search_library" data-remote="true" id="search-li" method="get">
+
+								<div class="row library-search">
+									<div class="col-sm-6">
+
+										<div class="input-icon">
+											<span class="fa-search fa search-icon"></span>
+											<input name="search_lib" id="search_lib" type="text" class="form-control"  placeholder="Search in library... ">
+										</div>
+									</div>
+
+									<div class="col-sm-6 text-right">
+										<h6 class="pull-right">Show customized roadmaps: <span>
+											<input name="filter-roadmap" type="checkbox" checked data-toggle="switch" />
+										</span></h6>
+									</div>
+								</div>
+								<div class="col-md-3 pull-right">
+
+										<div class="input-icon">
+											<button type="submit" class="btn btn-primary pull-right">
+												Search
+											</button>
+										</div>
+									</div>
+							</form>
+
+						</div>
+					</div>
+
+					<!-- LIST OF LIBRARY ITEMS -->
+					<div class="row">
+						<!-- Library item - HOUSING-->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon housing-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-housing fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Housing</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Library item - HOUSING ALLOWANCE -->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon housing-allowance-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-housing-benefit fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Housing allowance</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Library item - VISA -->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon visa-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-visa fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Visa</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Library item - HOUSING-->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon residence-permit-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-residence-permit fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Residence Permit</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Library item - HOUSING-->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon telecommunication-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-telecommunication fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Telecommunication</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon bank-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-bank fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Bank</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Library item - BANK -->
+						<div class="col-md-4 col-sm-6">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon health-insurance-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <i class="icon-health-insurance fa-stack-1x "></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Health insurance</h4>
+											<div class="library-item-description">
+												<p>
+													Fifteen men on the dead man’s chest – Yo-ho-ho and a bottle of rum! Drink and the devil had done for the rest – Yo-ho-ho and a bottle of rum!
+													Yo-ho-ho and a
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<%Roadmap.all.each do |roadmap|%>
+						<%if roadmap.user_id != current_user.id && @search_result_lib.include?(roadmap.user)%>
+						<% map_user = User.find(roadmap.user_id)%>
+						<!-- Library item -->
+						<div class="col-md-4 col-sm-6 roadmap-item">
+							<div class="panel panel-default panel-library">
+								<div class="panel-body">
+									<div class="row-same-height">
+										<div class="col-xs-3 col-xs-height category-icon-placeholder">
+											<div class="category-icon roadmap-color">
+												<div class="icon-vertical">
+													<span class="fa-stack"> <i class="fa fa-circle fa-stack-2x fa-inverse"></i> <!-- <i class="fa fa-subway fa-stack-1x "></i> --> <i class="icon-roadmap-icon fa-stack-1x"></i> </span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-9 col-xs-height">
+											<h4>Roadmap</h4>
+											<div class="library-roadmap-details">
+												<p>
+													<i class="fa fa-user"></i> <%= map_user.name%>
+												</p>
+												<p>
+													<i class="fa fa-globe"></i> <%= map_user.country_of_origin%>
+												</p>
+												<p>
+													<i class="fa fa-map-marker"></i> <%= map_user.city_of_studies%>
+												</p>
+												<p>
+													Customized Roadmap by a user.
+												</p>
+											</div>
+											<div class="user-rating library-radmap-rating pull-right">
+												<%for i in 1..roadmap.rating%>
+												<i class="fa fa-star"></i>
+												<%end%>
+
+												<%for i in 1..(5-roadmap.rating)%>
+
+												<i class="fa fa-star star-gray"></i>
+												<%end%>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /library item -->
+						<%end%>
+						<%end%>
+
+					</div>
+					<!-- /row -->
+
+				</div><!-- /.container -->
+			</div><!-- /.getgo-content -->
+			<footer>
+				<p>
+					<i class="icon-getgo_logo"></i>
+				</p>
+				<p>
+					2015 &copy; GETGO - All rights reserved
+				</p>
+			</footer>
+		</div><!-- /canvas -->
+
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+
+		<%= javascript_include_tag 'jasny-bootstrap' %>
+		<%= javascript_include_tag 'checkbox' %>
+		<%= javascript_include_tag 'radio' %>
+		<%= javascript_include_tag 'bootstrap-switch' %>
+		<%= javascript_include_tag 'toolbar' %>
+		<%= javascript_include_tag 'starrr' %>
+		<%= javascript_include_tag 'jquery.matchHeight' %>
+
+		<%= javascript_include_tag 'getgo' %>
+
+	</body>
+</html>

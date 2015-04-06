@@ -1,11 +1,30 @@
 class SearchController < ApplicationController
-  def settlebuddies
+    before_filter :init_foo_list
+def search_library
+  
+  if (params[:search_lib].eql?"")
    
+      @search_result_lib = User.where('id<>?', current_user.id).all
+
+  else
+  @search_result_lib = User.where('(name LIKE ? OR city_of_studies LIKE ? OR country_of_origin LIKE ?) AND id<>?', "%#{params[:search_lib]}%","%#{params[:search_lib]}%","%#{params[:search_lib]}%", current_user.id).all
+  
+  end 
+  render :library, :layout => false
+  
+end
+  def settlebuddies
+      if (params[:search_clause].nil?)
+              @search_result = User.where('settlebuddy=? AND id<>?', true,current_user.id).all
+
+      end
+
     if current_user.settlebuddy?
       flash[:alert]="You are a settle buddy yourself!"
       redirect_to edit_user_registration_path
     else
-      first = Request.where(client_id: current_user.id, c_view_status: false).first
+   
+        first = Request.where(client_id: current_user.id, c_view_status: false).first
        if !first.nil?
          first.c_view_status = true
          first.save!
@@ -23,13 +42,34 @@ class SearchController < ApplicationController
     end
 
   end
+  def library
+     if (params[:search_lib].nil?)
+              @search_result_lib = User.where('id<>?', current_user.id).all
 
+      end
+
+    render :layout => false
+  end
+  
+def search_settle_buddy
+  
+  if (params[:search_clause].eql?"")
+   
+      @search_result = User.where('settlebuddy=? AND id<>?', true,current_user.id).all
+
+  else
+  @search_result = User.where('(name LIKE ? OR city_of_studies LIKE ? OR country_of_origin LIKE ?) AND settlebuddy=? AND id<>?', "%#{params[:search_clause]}%","%#{params[:search_clause]}%","%#{params[:search_clause]}%", true,current_user.id).all
+  
+  end 
+  render :settlebuddies, :layout => false
+
+end
   def request_settle
    
     req = Request.where(settle_buddy_id: params[:settle_id], client_id: params[:user_id]).first_or_create
     req.status = 1 #pending
     req.s_view_status = false #turn on notification for settlebuddy
-        req.c_view_status = true #turn off notification for client
+    req.c_view_status = true #turn off notification for client
 
     req.save!
 
@@ -66,6 +106,11 @@ class SearchController < ApplicationController
       req.save!
       flash[:notice].clear
       redirect_to "/search/requests_to_settle"
+  end
+  def init_foo_list
+    @search_result ||= []
+        @search_result_lib ||= []
+
   end
     
 end
