@@ -124,17 +124,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   # You can put the params you want to permit in the empty array.
+  
   def configure_sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :public_roadmap, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
   end
 
   # You can put the params you want to permit in the empty array.
   def configure_account_update_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :current_password,:name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
+    devise_parameter_sanitizer.for(:account_update).push(:email, :password, :password_confirmation, :current_password,:public_roadmap,:name, :city_of_studies, :country_of_origin, :duration, :birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
   end
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:name, :city_of_studies, :country_of_origin, :duration,:birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
+    devise_parameter_sanitizer.for(:sign_up).push(:name, :city_of_studies, :country_of_origin, :public_roadmap,:duration,:birthdate, :settlebuddy, :settlebuddy_supports_attributes => [:settlebuddy_support, :bank, :visa, :housing, :public_transport,:caf,:telecommunication])
 
   end
 # The path used after sign up.

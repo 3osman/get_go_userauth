@@ -32,13 +32,15 @@ Rails.application.routes.draw do
   get 'search/settle_request'
   get 'search/library'
   get 'search/search_settle_buddy'
-    get 'search/search_library'
-
+  get 'search/search_library'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "callbacks", sessions: "users/sessions", registrations: 'users/registrations'}
   devise_scope :user do
     get "/logout" => "users/sessions#destroy"
   end
+  as :user do
+  get 'users', :to => 'users/registrations#edit', :as => :user_root # Rails 3
+end
   match '/contact_forms',     to: 'contact_forms#new',             via: 'get'
   resources "contact_forms", only: [:new, :create]
 
