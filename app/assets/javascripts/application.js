@@ -24,6 +24,8 @@
 //= require bootstrap-select.min.js
 //= require jquery.matchHeight.js
 //= require getgo.js
+//= require jquery.raty
+//= require ratyrate
 
 
 

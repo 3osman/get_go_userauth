@@ -159,12 +159,12 @@
 								</div>
 								<div class="col-md-3 pull-right">
 
-										<div class="input-icon">
-											<button type="submit" class="btn btn-primary pull-right">
-												Search
-											</button>
-										</div>
+									<div class="input-icon">
+										<button type="submit" class="btn btn-primary pull-right">
+											Search
+										</button>
 									</div>
+								</div>
 							</form>
 
 						</div>
@@ -376,14 +376,7 @@
 												</p>
 											</div>
 											<div class="user-rating library-radmap-rating pull-right">
-												<%for i in 1..roadmap.rating%>
-												<i class="fa fa-star"></i>
-												<%end%>
-
-												<%for i in 1..(5-roadmap.rating)%>
-
-												<i class="fa fa-star star-gray"></i>
-												<%end%>
+												<%= rating_for roadmap, "roadmap", :cancel => false ,disable_after_rate: false %>
 
 											</div>
 										</div>
@@ -423,6 +416,8 @@
 		<%= javascript_include_tag 'jquery.matchHeight' %>
 
 		<%= javascript_include_tag 'getgo' %>
+		<%= javascript_include_tag 'jquery.raty' %>
+		<%= javascript_include_tag 'ratyrate' %>
 
 	</body>
 </html>

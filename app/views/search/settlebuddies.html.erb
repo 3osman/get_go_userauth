@@ -160,14 +160,14 @@
 
 								</div>
 
-									<div class="col-md-3 pull-right">
+								<div class="col-md-3 pull-right">
 
-										<div class="input-icon">
-											<button type="submit" class="btn btn-primary pull-right">
-												Search
-											</button>
-										</div>
+									<div class="input-icon">
+										<button type="submit" class="btn btn-primary pull-right">
+											Search
+										</button>
 									</div>
+								</div>
 							</form>
 
 						</div>
@@ -193,14 +193,7 @@
 								<h4><%= user.name%></h4>
 
 								<div class="user-rating">
-									<%for i in 1..user.rating%>
-									<i class="fa fa-star"></i>
-									<%end%>
-
-									<%for i in 1..(5-user.rating)%>
-
-									<i class="fa fa-star star-gray"></i>
-									<%end%>
+									<%= rating_for user, "user", disable_after_rate: false,:cancel => false %>
 								</div>
 
 								<div class="buddy-info">
@@ -295,6 +288,8 @@
 		<%= javascript_include_tag 'jquery.matchHeight' %>
 
 		<%= javascript_include_tag 'getgo' %>
+		<%= javascript_include_tag 'jquery.raty' %>
+		<%= javascript_include_tag 'ratyrate' %>
 
 	</body>
 </html>

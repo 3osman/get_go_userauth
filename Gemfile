@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem "twitter-bootstrap-rails"
 gem "bootstrap-switch-rails"
 
-
+gem 'ratyrate'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
