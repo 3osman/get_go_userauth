@@ -1,0 +1,45 @@
+﻿TASK:Bank
+Task Description
+Opening a bank account and attaching it to all your transactions.
+==================
+When to start
+A bank account can only be opened once you arrive at Paris. Opening an account can be done in a day and methods of making payments (cash cards and cheque books) will usually arrive within a week to ten days of the account being opened.
+==================
+Documents Needed
+EU citizens: Proof of identity (a valid passport or ID card)
+Non-EU citizens: Proof of residence (Carte de séjour)
+Proof of a French address: a utility bill, rental agreement or property deeds
+Proof of earnings or status: Contract of employment/proof of earnings/proof of status (example: a student card)
+In some cases, a birth certificate
+
+==================
+Step 1: Choosing a bank
+Start
+Choose a bank that is close to your residence. Some banks such as BNP Paribas have student related plans that can benefit you tremendously such as the usual bank fee is waivered, the withdrawal limit is higher etc. (These benefits would vary from bank to bank).
+
+Step 2: Opening an account
+Start
+In order to open a bank account take the necessary documents to the bank officer who would then guide you  on the forms to fill up in order for you to be able to open an account.  Make sure you have your student card or university registration proof to avail of the student offers. Within a week to 10 days you should receive your bank card by mail followed by a separate mail for the pin. 
+
+Step 3 : Using the  RIB (Relevé d'Identité Bancaire)
+Start
+On opening an account, the bank provides several copies of RIB (Relevé d'Identité Bancaire). This is a form which establishes the bank references and account details and identity. It contains the numéro de compte(account number) the code de l'établissement (bank code) and the code du guichet (sort code).
+RIBs are requested when establishing regular contract payments by automatic debit on an account (prélèvement automatique) for example, for the payment of utilities. RIBs are also used when setting up automatic payments into an account, for example Social Security, Family Allowance benefits or salaries.
+There are usually about three printed RIBs in the back of a cheque book. Printouts of RIBs can also be made from a cash machine, or via the Internet banking facility.
+
+Step 4 : Making Card Payments
+Start
+Card payments by carte bleue are accepted in most places in France. Payment is made using the PIN code; signatures may be requested over a certain amount.Look for the CB (carte bleue) Visa or MasterCard symbol.Note that the CB is a debit not a credit card.
+Cash machines, ATMs (distributeurs) are easy to find in most towns and villages and are straightforward to use (being much the same as elsewhere in the world): enter the card and follow the text instructions. Many machines allow for the option to select English-language text.
+There may be restrictions on the use of an account when travelling outside the département where the account is held; speak to the branch to make arrangements.
+
+Step 4 : Using Cheques
+Start
+Photographic ID (for example passport, residence permit or driving licence) may be requested when paying by cheque.
+Cheques are accepted as a cash payment. French law makes a cheque equivalent to cash; it is therefore illegal to write a cheque if there are not sufficient funds in the account to cover the payment. If a cheque is written that the bank cannot pay because of lack of funds, the bank is obliged to report it to France's national banking authority, the Bank de France, which can impose an interdit bancaire which forbids the account holder from using cheques for five years.
+A cheque can only be cancelled if it is lost, stolen or if there is a suspicion of fraud
+It is illegal to write a post-dated or open-dated cheque
+A cheque is valid in France for one year and eight days (12 months, 8 days).
+When receiving payment by cheque, always write the account number, bank code and sign the back of a cheque before depositing it.
+As a chequebook nears completions, the bank will send another one if a form requesting automatic renewal has been filled in. Postal fees are charged for registered delivery. Renewal can also be made by filling in the form provided in a chequebook. Collection can be made at the branch.
+Paying by personal cheque does not incur additional charges in France; however, a fee is charged to use a bankers draft (Chèque de Banque).

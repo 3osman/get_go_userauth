@@ -347,6 +347,7 @@
 						<%Roadmap.all.each do |roadmap|%>
 						<%if roadmap.user_id != current_user.id && @search_result_lib.include?(roadmap.user)%>
 						<% map_user = User.find(roadmap.user_id)%>
+						<% if map_user.public_roadmap %>
 						<!-- Library item -->
 						<div class="col-md-4 col-sm-6 roadmap-item">
 							<div class="panel panel-default panel-library">
@@ -385,6 +386,7 @@
 							</div>
 						</div>
 						<!-- /library item -->
+						<%end%>
 						<%end%>
 						<%end%>
 

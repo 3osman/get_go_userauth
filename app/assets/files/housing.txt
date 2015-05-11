@@ -1,0 +1,33 @@
+﻿TASK:Housing
+Task Description
+Finding a place to stay, either in a student residence or a private apartment.
+==================
+When to start
+Accommodation could be difficult to find and hence is advised that you you start looking at least 2 months prior to your arrival.
+==================
+Step 1: Booking a student accommodation -CROUS
+Start
+1.There is an organization called CROUS that provides accommodation for students. There is a lot of demand to this accommodation and hence one is advised to apply as early as possible. 
+http://www.crous-paris.fr/
+
+Step 2: Filling up the online application
+Start
+1.Go to the website and fill up the online application form : http://workflow.ciup.fr/citeu/site/demande/etudiant/e_demande_maj1.php?langue=en
+
+2. Once you fill up the form you will receive a mail from the administration on the availability of rooms. 
+
+Step 3: Other accommodations
+Start
+1.If there are no rooms available some other places where you can apply for housing are :
+HALLS OF RESIDENCE
+
+These halls of residence are reserved for single individuals and couples without children
+
+Union Nationale des Maisons d’Etudiants (UNME): for students between 16 and 30 years of age
+www.unme-asso.com
+
+Association l’Etape: furnished accommodation for students between 16 and 25 years of age 
+www.etape.asso.fr
+
+Office des Services Etudiants (OSE): furnished or equipped studio flats (Guarantor in France required ) 
+www.leclubetudiant.com [under logement]

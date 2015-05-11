@@ -18,45 +18,54 @@ class Users::RegistrationsController < Devise::RegistrationsController
  end
  
  def handle_roadmap(u_id)
-  file = File.open(Rails.root.join("app/assets/files/tasks.txt"), "rb")
-  contents = file.read
-  tasks=contents.split("TASK:")
   all_tasks = Hash.new
   all_steps = Hash.new
-  tasks.each do |task|
-    if !task.eql?""
-      title = task.split("\n")[0]
-      #puts title
-      all_tasks["#{title}"] = Hash.new
-      other = task.split(title)[1]
-      sections = other.split("==================")
-      if !sections.empty?
-        sections.each do |section|
-          sec_title = section.split("\n")[1]
-         # puts sec_title
-          sec_content = section.split(sec_title)[1]
-         # puts sec_content
-          if sec_title.include?"Link"
-           sec_content.delete! "\r", "\n"
-          end
-          if sec_title.include?"Step"
-            steps = section.split("Step")
-            steps.each do |step|
-              step_title = step.split("Start")[0]
-              step_content = step.split("Start")[1]
-              all_steps["#{title}"] = Hash.new
-              all_steps["#{title}"]["#{step_title}"] = step_content
-              puts all_steps
-            end
-             
-          else
-            all_tasks["#{title}"]["#{sec_title}"] = sec_content
-  
-          end
+  dire = Rails.root.join("app/assets/files")
+  Dir.foreach(dire) do |item|
+    next if item == '.' or item == '..'
+    file = File.open("#{dire}/#{item}", "rb")
+    task = file.read
+    
+    title = task.split(/\r?\n/)[0].split("TASK:")[1]
+    #puts title
+  #puts title
+  #puts '=================='
+    all_tasks["#{title}"] = Hash.new
+    other = task.split(title)[1]
+    sections = other.split("==================")
+   
+    if !sections.empty?
+      sections.each do |section|
+        sec_title = section.split( /\r?\n/)[1]
+       # puts sec_title
+        sec_content = section.split(sec_title)[1][2..-1]
+       # puts sec_content
+        if sec_title.include?"Link"
+         sec_content.delete! "\r", "\n"
         end
+        if sec_title.include?"Step"
+          #puts section
+          #puts "===================="
+          steps = section.split("Step")
+          steps.each do |step|
+
+            step_title = step.split("Start")[0]
+            step_content = step.split("Start")[1]
+            
+            if !(all_steps.has_key?"#{title}")
+            all_steps["#{title}"] = Hash.new
+          end
+            all_steps["#{title}"]["#{step_title}"] = step_content
+            #puts all_steps
+          end
+           
+        else
+          all_tasks["#{title}"]["#{sec_title}"] = sec_content
+  
+        end
+        
       end
     end
-  
   end
   #all_tasks #task title is key, then key of section (documents, link,etc..), then content
   #all_steps #task title is key, then key of subtask, then content
@@ -64,36 +73,50 @@ class Users::RegistrationsController < Devise::RegistrationsController
   roadmap.save!
   all_tasks.each do |key, value|
     #puts key
-    task = Task.new(name:key, roadmap_id:roadmap.id, done:false)
-    value.each do |k,v|
-      puts "++++++++++++++++++++++"
-      puts k.inspect
-            puts "++++++++++++++++++++++"
-
-      if k.include?"Documents Needed"
-        v.split("\n").each do |doc|
-          docu = Document.new(name:doc, task_id:task.id,done:false)
-          docu.save!
-        end
-      elsif k.include?"When to start"
-        task.application_time = v
-      elsif k.include?"Link Description"
-        link = Link.where(task_id: task.id).first_or_create
-        link.link_description = v
-        link.save!
-      elsif k.include?"Link source"
-        link = Link.where(task_id: task.id).first_or_create
-        link.link_src = v
-        link.save!
-      
+    if resource.country_of_origin.eql?("Europe") && key.eql?("Non- EU Visa Procedure") || resource.duration.eql?("Less than 6 months") && key.eql?("Residence Permit")
+    else
+      task = Task.new(name:key, roadmap_id:roadmap.id, done:false)
+          task.save!
+  
+      value.each do |k,v|
+       
+  
+        if k.include?"Documents Needed"
+          v.split("\n").each do |doc|
+            docu = Document.new(name:doc, task_id:task.id,done:false)
+            docu.save!
+          end
+        elsif k.include?"When to start"
+          task.application_time = v
+        elsif k.include?"Link Description"
+          link = Link.where(task_id: task.id).first_or_create
+          link.link_description = v
+          link.save!
+        elsif k.include?"Link source"
+          link = Link.where(task_id: task.id).first_or_create
+          link.link_src = v
+          link.save!
+        elsif k.include?"Task Description"
+          task.description = v
         
+          
+        end
       end
     end
     all_steps["#{key}"].each do |k,v|
+      if resource.country_of_origin.eql?("Europe") && key.eql?("Non- EU Visa Procedure") || resource.duration.eql?("Less than 6 months") && key.eql?("Residence Permit")
+    else
+      if v.eql?("\r\n") || v.eql?("\n") || v.eql?("\n\r")
+      else
         subtask = Subtask.new(task_id:task.id, done:false, name:k, description:v)
         subtask.save!
+       end
+end
     end
+    if resource.country_of_origin.eql?("Europe") && key.eql?("Non- EU Visa Procedure") || resource.duration.eql?("Less than 6 months") && key.eql?("Residence Permit")
+    else
     task.save!
+    end
   end
  
  end

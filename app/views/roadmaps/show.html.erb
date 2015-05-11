@@ -149,6 +149,24 @@
 								</div>
 							</li>
 							<!-- roadmap nav rounded item -->
+							<%if current_user.country_of_origin.eql?("Non-Europe")%>
+							<li role="presentation" class="visa">
+								<div class="round-button">
+									<div class="round-button-circle">
+										<a href="#visa" aria-controls="visa" role="tab" data-toggle="tab"><i class="icon-visa"></i></a>
+									</div>
+								</div>
+							</li>
+							<%end%>
+							<!-- roadmap nav rounded item -->
+							<li role="presentation" class="health-insurance">
+								<div class="round-button">
+									<div class="round-button-circle">
+										<a href="#health-insurance" aria-controls="health-insurance" role="tab" data-toggle="tab"><i class="icon-health-insurance"></i></a>
+									</div>
+								</div>
+							</li>
+							<!-- roadmap nav rounded item -->
 							<li role="presentation" class="housing active completed">
 								<div class="round-button">
 									<div class="round-button-circle">
@@ -172,22 +190,8 @@
 									</div>
 								</div>
 							</li>
-							<!-- roadmap nav rounded item -->
-							<li role="presentation" class="health-insurance">
-								<div class="round-button">
-									<div class="round-button-circle">
-										<a href="#health-insurance" aria-controls="health-insurance" role="tab" data-toggle="tab"><i class="icon-health-insurance"></i></a>
-									</div>
-								</div>
-							</li>
-							<!-- roadmap nav rounded item -->
-							<li role="presentation" class="visa">
-								<div class="round-button">
-									<div class="round-button-circle">
-										<a href="#visa" aria-controls="visa" role="tab" data-toggle="tab"><i class="icon-visa"></i></a>
-									</div>
-								</div>
-							</li>
+							
+							
 							<!-- roadmap nav rounded item -->
 							<li role="presentation" class="telecommunication">
 								<div class="round-button">
@@ -204,6 +208,8 @@
 									</div>
 								</div>
 							</li>
+							<%if current_user.duration.eql?("More than 6 months") %>
+
 							<!-- roadmap nav rounded item -->
 							<li role="presentation" class="residence-permit">
 								<div class="round-button">
@@ -212,6 +218,7 @@
 									</div>
 								</div>
 							</li>
+							<%end%>
 						</ul>
 					</nav>
 
@@ -220,12 +227,16 @@
 						<div class="panel-body">
 
 							<div class="tab-content">
+								
+								<%rm = Roadmap.where(user_id: current_user.id).take%>
+								
+								<%housing = Task.where(roadmap_id: rm.id, name: "Housing").take%>
 								<!-- Roadmap tab-pane item -->
 								<div role="tabpanel" class="tab-pane fade active in" id="housing">
 									<div class="roadmap-item-title">
 										<div class="row">
 											<div class="col-xs-10">
-												<h3>Non- EU Visa Procedure </h3>
+												<h3><%= housing.name%></h3>
 											</div>
 											<div class="col-xs-2">
 												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
@@ -246,25 +257,32 @@
 														Description
 													</dt>
 													<dd>
-														Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+														<%= housing.description%>
 													</dd>
 												</dl>
 											</div>
 											<div class="col-sm-6">
+												<%link = Link.where(task_id: housing.id).take%>
+													<%if !link.nil?%>
 												<dl>
+													
 													<dt>
 														Helpful Links
 													</dt>
 													<dd>
-														<a href="www.campusfrance.org/en">Campus France website</a>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
 													</dd>
 												</dl>
+																									<%end%>
+
 												<dl>
 													<dt>
 														When to Apply
 													</dt>
 													<dd>
-														The duration of the entire process varies from <strong>two weeks to a month</strong> depending on the time of year. Applications earlier than three months before the scheduled date of departure will not be accepted.
+														<%= housing.application_time%>
 													</dd>
 												</dl>
 												<p></p>
@@ -306,24 +324,12 @@
 												<div class="panel-body">
 													<div class="row">
 														<div class="col-sm-6">
+															<%housing.documents.each do |doc|%>
 															<label class="checkbox" for="checkbox1">
 																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
-																Curriculum vitae /Resume </label>
-															<label class="checkbox" for="checkbox2">
-																<input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" />
-																Passport size photographs </label>
-															<label class="checkbox" for="checkbox3">
-																<input type="checkbox" value="" id="checkbox3" data-toggle="checkbox" />
-																Academic records (Marksheets and Certificates) </label>
-														</div>
-														<div class="col-sm-6">
-															<label class="checkbox" for="checkbox4">
-																<input type="checkbox" value="" id="checkbox5" data-toggle="checkbox" />
-																Acceptance / admission letter from the French Institution </label>
-															<label class="checkbox" for="checkbox5">
-																<input type="checkbox" value="" id="checkbox5" data-toggle="checkbox" />
-																Experience Letter (if applicable) </label>
-														</div>
+																<%= doc.name%> </label>
+																<%end%>
+															
 													</div>
 													<!-- Roadmap comment -->
 													<div class="roadmap-comment">
@@ -345,103 +351,900 @@
 										</div>
 
 										<!-- Panel roadmap -->
-										<div class="panel panel-roadmap" id="panel1">
-											<div class="panel-heading" data-toggle="collapse" data-target="#step1">
+										<%housing.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
 												<div class="panel-title done">
-													Campus France - Online registration
+													<%= subtask.name%>
 													<div class="panel-title-btn">
 														<a href="#">Done</a>
 													</div>
 												</div>
 											</div>
-											<div id="step1" class="panel-collapse collapse in">
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
 												<div class="panel-body">
-													1. Log on to the Campus France website of your country and create an account on the website.
-
-													2. Fill up the account creation forms as per the mentioned requirements. Once you register you will receive a unique Campus France Registration Number (ex. IN60XXXX) along with a userid and password. You would need this registration number for for all further reference with regard to your application.
-
-													3. To access your account, go to Campus France website. In the Register online box, click on ‘Enter Your Account’. Log in using the given Username (id) / Password.
-
-													4. Click on the Campus France form under ‘My File’ and fill the academic records, language skills and CV+SOP sections. Upload documents . Ensure that all four fields in the Validation tab indicate “Complete” but DO NOT CLICK ON “SAVE” at the bottom of this page.
-													5. Ensure that the Campus France fees is paid as per instructions mentioned on the website.
-
-													6. Send your file number (Ex. IN60XXXX) to the assigned Campus France office to get your file reviewed and to request an appointment for the academic interview.
-
-												</div>
+													<%= subtask.description%></div>
 											</div>
 										</div>
-
-										<!-- Panel roadmap -->
-										<div class="panel panel-roadmap" id="panel2">
-											<div class="panel-heading" data-toggle="collapse" data-target="#step2">
-												<div class="panel-title">
-													2. Step
-													<div class="panel-title-btn">
-														<a href="#">Done</a>
-													</div>
-												</div>
-											</div>
-											<div id="step2" class="panel-collapse collapse in">
-												<div class="panel-body">
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-												</div>
-											</div>
-										</div>
-
-										<!-- Panel roadmap -->
-										<div class="panel panel-roadmap" id="panel3">
-											<div class="panel-heading" data-toggle="collapse" data-target="#step3">
-												<div class="panel-title">
-													3. Step
-													<div class="panel-title-btn">
-														<a href="#">Done</a>
-													</div>
-												</div>
-											</div>
-											<div id="step3" class="panel-collapse collapse in">
-												<div class="panel-body">
-													Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-												</div>
-											</div>
-										</div>
-									</div>
+								<%end%>
+									
+								</div>
+								</div>
 								</div>
 
 								<!-- Roadmap tab-pane item -->
 								<div role="tabpanel" class="tab-pane fade" id="welcome">
 									<h3>Welcome to your personal Roadmap</h3>
 									<p>
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+										You will find here your customized map based on your preferences. 
 									</p>
 								</div>
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="housing-benefit">
-									<h3>Item 3</h3>
-								</div>
+								<%caf = Task.where(roadmap_id: rm.id, name: "Housing Allowance (CAF)").take%>
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="health-insurance">
-									<h3>Custom item</h3>
+								<div role="tabpanel" class="tab-pane fade active in" id="housing-benefit">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= caf.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= caf.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: caf.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= caf.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%caf.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%caf.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
 								</div>
+								</div>
+								</div>
+
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="visa">
-									<h3>Custom item</h3>
+								<%hi = Task.where(roadmap_id: rm.id, name: "Health Insurance").take%>
+								<!-- Roadmap tab-pane item -->
+								<div role="tabpanel" class="tab-pane fade active in" id="health-insurance">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= hi.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= hi.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: hi.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= hi.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%hi.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%hi.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
 								</div>
+								</div>
+								</div>
+
+								<!-- Roadmap tab-pane item -->
+								<%visa = Task.where(roadmap_id: rm.id, name: "Non- EU Visa Procedure").take%>
+								<%if !visa.nil?%>
+								<!-- Roadmap tab-pane item -->
+								<div role="tabpanel" class="tab-pane fade active in" id="visa">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= visa.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= visa.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: visa.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= visa.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%visa.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%visa.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
+								</div>
+</div>
+</div>
+<%end%>
 								<!-- Roadmap tab-pane item -->
 								<div role="tabpanel" class="tab-pane fade" id="telecommunication">
-									<h3>Custom item</h3>
+									<h3>Soon</h3>
 								</div>
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="bank">
-									<h3>Custom item</h3>
-								</div>
+								<%bank = Task.where(roadmap_id: rm.id, name: "Bank").take%>
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="residence-permit">
-									<h3>Custom item</h3>
+								<div role="tabpanel" class="tab-pane fade active in" id="bank">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= bank.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= bank.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: bank.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= bank.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%bank.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%bank.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
 								</div>
+								</div>
+								</div>
+
 								<!-- Roadmap tab-pane item -->
-								<div role="tabpanel" class="tab-pane fade" id="public-transportation">
-									<h3>Custom item</h3>
+								
+								<%ofii = Task.where(roadmap_id: rm.id, name: "Residence Permit").take%>
+								<!-- Roadmap tab-pane item -->
+																<%if !ofii.nil?%>
+
+								<div role="tabpanel" class="tab-pane fade active in" id="residence-permit">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= ofii.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= ofii.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: ofii.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= ofii.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%ofii.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%ofii.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
 								</div>
+								</div>
+								</div>
+<%end%>
+								<!-- Roadmap tab-pane item -->
+								<%transport = Task.where(roadmap_id: rm.id, name: "Transport").take%>
+								<!-- Roadmap tab-pane item -->
+								<div role="tabpanel" class="tab-pane fade active in" id="public-transportation">
+									<div class="roadmap-item-title">
+										<div class="row">
+											<div class="col-xs-10">
+												<h3><%= transport.name%></h3>
+											</div>
+											<div class="col-xs-2">
+												<a id="vertical-bottom-toolbar" class="icon-button pull-right"> <i class="fa fa-cog"></i> </a>
+												<div id="user-toolbar-options" style="display: none">
+													<a href="#fakeLink"><i class="fa fa-user"></i></a>
+													<a href="#fakeLink"><i class="fa fa-star"></i></a>
+													<a href="#fakeLink"><i class="fa fa-edit"></i></a>
+													<a href="#fakeLink"><i class="fa fa-trash-o"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="roadmap-item-description">
+										<div class="row">
+											<div class="col-sm-6">
+												<dl>
+													<dt>
+														Description
+													</dt>
+													<dd>
+														<%= transport.description%>
+													</dd>
+												</dl>
+											</div>
+											<div class="col-sm-6">
+												<%link = Link.where(task_id: transport.id).take%>
+													<%if !link.nil?%>
+												<dl>
+													
+													<dt>
+														Helpful Links
+													</dt>
+													<dd>
+														  <%= link_to link.link_description,link.link_src  %>
+
+														
+													</dd>
+												</dl>
+																									<%end%>
+
+												<dl>
+													<dt>
+														When to Apply
+													</dt>
+													<dd>
+														<%= transport.application_time%>
+													</dd>
+												</dl>
+												<p></p>
+												<!-- Roadmap comment -->
+
+											</div>
+										</div>
+										<div class="roadmap-comment">
+											<div class="comments-container"></div>
+											<a href="#" class="add-comment-btn">Add personal comment...</a>
+											<div class="add-comment">
+												<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+												<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+													Save
+												</button>
+												<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+													Cancel
+												</button>
+											</div>
+										</div>
+										<br>
+										<br>
+									</div>
+
+									<!-- ACCORDION -->
+									<div class="panel-group-roadmap" id="accordion">
+
+										<!-- Panel roadmap -->
+										<div class="panel panel-roadmap" id="panel0">
+											<div class="panel-heading done" data-toggle="collapse" data-target="#documents">
+												<div class="panel-title">
+													Documents needed
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="documents" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<div class="row">
+														<div class="col-sm-6">
+															<%transport.documents.each do |doc|%>
+															<label class="checkbox" for="checkbox1">
+																<input type="checkbox" value="" id="checkbox1" data-toggle="checkbox" />
+																<%= doc.name%> </label>
+																<%end%>
+															
+													</div>
+													<!-- Roadmap comment -->
+													<div class="roadmap-comment">
+														<div class="comments-container"></div>
+														<a href="#" class="add-comment-btn">Add personal comment...</a>
+														<div class="add-comment">
+															<textarea class="form-control" rows="3" id="comment" placeholder="Write comment here..."></textarea>
+															<button type="button" class="btn btn-primary btn-sm pull-right comment-save">
+																Save
+															</button>
+															<button type="button" class="btn btn-info btn-sm pull-right comment-cancel">
+																Cancel
+															</button>
+														</div>
+													</div>
+													<!-- /roadmap comment -->
+												</div>
+											</div>
+										</div>
+
+										<!-- Panel roadmap -->
+										<%transport.subtasks.each do |subtask|%>
+										<div class="panel panel-roadmap" id="<%= subtask.name%>">
+											<div class="panel-heading" data-toggle="collapse" data-target="#<%= subtask.name%>">
+												<div class="panel-title">
+													<%= subtask.name%>
+													<div class="panel-title-btn">
+														<a href="#">Done</a>
+													</div>
+												</div>
+											</div>
+											<div id="<%= subtask.name%>" class="panel-collapse collapse in">
+												<div class="panel-body">
+													<%= subtask.description%></div>
+											</div>
+										</div>
+								<%end%>
+									
+								</div>
+								</div>
+								</div>
+
 
 							</div>
 							<!-- /tab content -->

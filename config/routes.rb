@@ -39,8 +39,8 @@ Rails.application.routes.draw do
     get "/logout" => "users/sessions#destroy"
   end
   as :user do
-  get 'users', :to => 'users/registrations#edit', :as => :user_root # Rails 3
-end
+    get 'users', :to => 'users/registrations#edit', :as => :user_root # Rails 3
+  end
   match '/contact_forms',     to: 'contact_forms#new',             via: 'get'
   resources "contact_forms", only: [:new, :create]
 
