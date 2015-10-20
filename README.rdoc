@@ -1,28 +1,17 @@
-== README
+== Getgo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+GetGo is a responsive web based application that curates and organizes all the necessary 
+information students need when traveling abroad to pursue their studies. The goal of the 
+application is to provide easy access to reliable information about the numerous formalities that 
+one has to complete in order to relocate to a new city abroad. The application hosts all the 
+essential information in one location as opposed to having users spend a considerable amount of 
+time in searching for relevant and reliable information across different websites and other sources.
 
-Things you may want to cover:
+Notes:
 
-* Ruby version
+* Rails 4.2
 
-* System dependencies
+* PostgreSql
 
-* Configuration
+* Facebook OmniAuth
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
